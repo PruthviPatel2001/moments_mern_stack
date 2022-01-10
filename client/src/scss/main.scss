@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+@import "_var.scss";
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    // background-color:;
+}
+// App Bar component
+
+.header-bar {
+    background-color: $Blue !important ;
+    box-shadow: 0px 4px 14px -3px #d8d3cd;
+
+    h6 {
+        color: $Pink;
+        font-family: "Lobster", cursive;
+        font-size: 3em;
+        margin-left: 2rem;
+    }
+}
+
+.bottom-bar {
+    background-color: $Yellow !important;
+    box-shadow: 2px -5px 34px 0px $Yellow !important;
+    border: 4px solid $Yellow;
+
+    .round-btn {
+        background-color: $Blue;
+        box-shadow: 0px 0px 0px 5px $White;
+
+        &:hover {
+            background-color: $Blue;
+        }
+
+        .add-icon {
+            color: $Pink;
+            font-size: 3rem;
+        }
+    }
+}
+
+// Form component
+
+.form-wrapper {
+    .item {
+        display: flex;
+        justify-content: space-between;
+        // border: 1px solid red;
+        margin-top: 1.5rem;
+    }
+
+    .item:nth-child(1) {
+        margin-top: 0.5rem;
+    }
+
+    .btn-1 {
+        background-color: $Blue;
+        color: $White;
+        &:hover {
+            background-color: $Blue;
+            color: $White;
+        }
+    }
+
+    .btn-2 {
+        border: 1px solid $Yellow;
+        color: $Yellow;
+    }
+}
+
+// Post Component
+.post-main-grid {
+    // border: 1px solid red;
+    margin-top: 1.5rem !important;
+}
+.post-grid {
+    // border: 1px solid yellow;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .card-Header {
+        background-color: $Blue;
+
+        color: $White;
+        .icon {
+            color: $Pink;
+        }
+    }
+
+    .szh-menu-button {
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+    .szh-menu {
+        color: black;
+        // padding: 0.4rem 0.8rem;
+
+        .szh-menu__item {
+            // border: 1px solid red;
+            padding: 0.4rem 1rem !important;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+
+            &:hover{
+                background-color: none !important;
+            }
+        }
+    }
+    .card-content {
+        // background-color: $Pink;
+        border-top: 1px solid rgba(0, 0, 0, 0.226);
+
+        // color: $White ;
+    }
+}

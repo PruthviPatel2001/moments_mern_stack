@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header-bar {
+  background-color: #6886C5 !important;
+  -webkit-box-shadow: 0px 4px 14px -3px #d8d3cd;
+          box-shadow: 0px 4px 14px -3px #d8d3cd;
+}
+
+.header-bar h6 {
+  color: #FFACB7;
+  font-family: "Lobster", cursive;
+  font-size: 3em;
+  margin-left: 2rem;
+}
+
+.bottom-bar {
+  background-color: #FFE0AC !important;
+  -webkit-box-shadow: 2px -5px 34px 0px #FFE0AC !important;
+          box-shadow: 2px -5px 34px 0px #FFE0AC !important;
+  border: 4px solid #FFE0AC;
+}
+
+.bottom-bar .round-btn {
+  background-color: #6886C5;
+  -webkit-box-shadow: 0px 0px 0px 5px #F9F9F9;
+          box-shadow: 0px 0px 0px 5px #F9F9F9;
+}
+
+.bottom-bar .round-btn:hover {
+  background-color: #6886C5;
+}
+
+.bottom-bar .round-btn .add-icon {
+  color: #FFACB7;
+  font-size: 3rem;
+}
+
+.form-wrapper .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.form-wrapper .item:nth-child(1) {
+  margin-top: 0.5rem;
+}
+
+.form-wrapper .btn-1 {
+  background-color: #6886C5;
+  color: #F9F9F9;
+}
+
+.form-wrapper .btn-1:hover {
+  background-color: #6886C5;
+  color: #F9F9F9;
+}
+
+.form-wrapper .btn-2 {
+  border: 1px solid #FFE0AC;
+  color: #FFE0AC;
+}
+
+.post-main-grid {
+  margin-top: 1.5rem !important;
+}
+
+.post-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.post-grid .card-Header {
+  background-color: #6886C5;
+  color: #F9F9F9;
+}
+
+.post-grid .card-Header .icon {
+  color: #FFACB7;
+}
+
+.post-grid .szh-menu-button {
+  background-color: transparent !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  border: none !important;
+}
+
+.post-grid .szh-menu {
+  color: black;
+}
+
+.post-grid .szh-menu .szh-menu__item {
+  padding: 0.4rem 1rem !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.post-grid .szh-menu .szh-menu__item:hover {
+  background-color: none !important;
+}
+
+.post-grid .card-content {
+  border-top: 1px solid rgba(0, 0, 0, 0.226);
+}
+/*# sourceMappingURL=main.css.map */
