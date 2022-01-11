@@ -8,6 +8,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Menu, MenuItem, MenuButton, SubMenu } from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/core.css';
 
+import {useDispatch} from 'react-redux';
+import { deletePost,likePost } from '../../../actions/posts';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
@@ -24,9 +27,8 @@ const useStyles = makeStyles((theme) => ({
 const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
 
     const classes = useStyles();
-    const update = () => {
-        console.log("hello");
-    }
+    const dispatch = useDispatch()
+    
 
     const upDateData=()=>{
 
@@ -68,7 +70,7 @@ const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
                             {/* <MenuItem onClick={()=>setCurrentId(post._id)}>Update</MenuItem> */}
                             <MenuItem onClick={ upDateData}>Update</MenuItem>
 
-                            <MenuItem>Delete</MenuItem>
+                            <MenuItem onClick={()=>dispatch(deletePost(post._id))}>Delete</MenuItem>
 
 
                         </Menu>
@@ -94,8 +96,8 @@ const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
+                    <IconButton aria-label="add to favorites" onClick={()=>dispatch(likePost(post._id))}>
+                        <FavoriteIcon  /> {post.likeCount}
                     </IconButton>
 
 

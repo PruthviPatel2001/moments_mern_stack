@@ -12,7 +12,17 @@ export default (posts = [], action) => {
     case 'UPDATE':
       console.log("reducer post id update", action.payload._id);
 
-      return posts.map((post)=>post._id === action.payload._id ? action.payload:post)
+      return posts.map((post)=>post._id === action.payload._id ? action.payload  :  post)
+
+    case 'DELETE':  
+    console.log("reducer post id update", action.payload);
+    return posts.filter((post)=>post._id !== action.payload)
+
+    case 'LIKE':
+      console.log("reducer post id update", action.payload._id);
+
+      return posts.map((post)=>post._id === action.payload._id ? action.payload  :  post)
+
 
     default:
       return posts;
