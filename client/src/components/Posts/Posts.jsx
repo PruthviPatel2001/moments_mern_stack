@@ -2,23 +2,41 @@ import React from 'react'
 
 import Post from './Post/Post'
 
-import {} from '@material-ui/core'
+import { CircularProgress } from '@material-ui/core'
 
 import { useSelector } from 'react-redux'
 
-const Posts = () => {
+const Posts = ({setCurrentId,SetPopUp,setUpdatePopupText}) => {
 
-    const posts = useSelector((state)=> state.posts)
+    const posts = useSelector((state) => state.posts)
 
-    console.log("from Posts.jsx:", posts);
+    console.log("from here Posts.jsx:", posts);
 
     return (
         <>
-            
-        <Post/>
-        <Post/>
-        <Post/>
-        
+
+            {!posts.length ? <CircularProgress /> : (
+
+                <>
+                    {posts.map((post) => {
+
+                        return (
+
+                            <div className="post-card" key={post._id}>
+
+                                <Post post={post} setCurrentId={setCurrentId} SetPopUp={SetPopUp} setUpdatePopupText={setUpdatePopupText} />
+
+                            </div>
+                        )
+
+
+                    })}
+
+
+                </>
+            )}
+
+
 
 
 

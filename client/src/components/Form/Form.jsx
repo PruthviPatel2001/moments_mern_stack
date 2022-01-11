@@ -1,45 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { TextField, Button, Typography, Paper } from '@material-ui/core'
 import { fade, withStyles, makeStyles } from "@material-ui/core/styles";
 import FileBase from 'react-file-base64';
 
-import { useDispatch } from 'react-redux'
-import { createPost } from '../../actions/posts';
+import { useDispatch, useSelector } from 'react-redux'
+import { createPost, updatePost } from '../../actions/posts';
 
 const NewTextField = withStyles({
     root: {
-      
+
         "& label.Mui-focused": {
             color: "#FFACB7"
-          },
-  
-      "& .MuiOutlinedInput-root": {
-       
-        "&:hover fieldset": {
-          borderColor: "#FFACB7"
-        },
-  
-        "&.Mui-focused fieldset": {
-          borderColor: "#FFACB7",
-          
         },
 
-      },
-     
+        "& .MuiOutlinedInput-root": {
+
+            "&:hover fieldset": {
+                borderColor: "#FFACB7"
+            },
+
+            "&.Mui-focused fieldset": {
+                borderColor: "#FFACB7",
+
+            },
+
+        },
+
     }
-  })(TextField);
-  
+})(TextField);
 
-  const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles((theme) => ({
     root: {
-     
-    },
- 
-  }));
-  
 
-const Form = () => {
+    },
+
+}));
+
+
+const Form = ({ currentId, setCurrentId,SetPopUp }) => {
 
     const classes = useStyles();
 
@@ -67,28 +67,59 @@ const Form = () => {
 
     const dispatch = useDispatch();
 
+    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
+
+
     const handelSubmit = (e) => {
 
 
         e.preventDefault();
 
-        console.log("inside handelSubmit postData from form.jsx", postData);
+        if (currentId) {
+            console.log("in form comp:", currentId);
+            dispatch(updatePost(currentId, postData))
+           
+
+        } else {
+
+            dispatch(createPost(postData))
+        }
+
+        clear();
+        SetPopUp(false);
 
 
-        dispatch(createPost(postData))
 
     }
 
     const clear = () => {
 
+        setCurrentId(null)
+        SetPostData({
+            creator: '',
+            title: '',
+            message: '',
+            tags: '',
+            selectedFile: ''
+        })
+        SetPopUp(false);
+
+
+
     }
+
+    useEffect(() => {
+
+        if (post) SetPostData(post);
+
+    }, [post]);
 
     return (
         <>
 
 
 
-            <form   onSubmit={handelSubmit} className={`${classes.root} form-wrapper`}>
+            <form onSubmit={handelSubmit} className={`${classes.root} form-wrapper`}>
 
                 <div className="item">
 
@@ -116,7 +147,7 @@ const Form = () => {
                     <NewTextField
                         margin='dense' name="tags"
                         variant="outlined" label="Tags"
-                        value={postData.tags} onChange={InputEvent}
+                        value={postData.tags} onChange={(e) => SetPostData({ ...postData, tags: e.target.value.split(',') })}
                     />
 
                 </div>
@@ -138,11 +169,11 @@ const Form = () => {
 
                 <div className="item">
 
-                    <Button  className="btn-1" type="submit">
+                    <Button className="btn-1" type="submit">
                         Submit
                     </Button>
 
-                    <Button  className="btn-2" onClick={clear}>
+                    <Button className="btn-2" onClick={clear}>
                         clear
                     </Button>
 

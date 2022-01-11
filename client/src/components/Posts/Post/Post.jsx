@@ -21,12 +21,31 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Post = () => {
+const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
 
     const classes = useStyles();
-    const update = ()=>{
+    const update = () => {
         console.log("hello");
     }
+
+    const upDateData=()=>{
+
+        console.log("on click of update button:",post._id);
+
+        setCurrentId(post._id)
+
+        SetPopUp(true)
+        setUpdatePopupText(true)
+
+
+        // console.log("hello post");
+    }
+
+    const Namefirst2 = post.creator.split(' ').slice(0, 2).join(' ');
+    const firstLetters = post.creator
+    .split(' ')
+    .map(word => word[0])
+    .join('');
 
     return (
         <div>
@@ -35,35 +54,43 @@ const Post = () => {
                     className="card-Header"
                     avatar={
                         <Avatar aria-label="recipe" className={classes.avatar}>
-                            R
+                            {firstLetters}
                         </Avatar>
                     }
                     action={
 
-                        <Menu style={{backgroundColor:'red'}} menuButton={
-                            <MenuButton style={{backgroundColor:'red'}}>
+                        <Menu style={{ backgroundColor: 'red' }} menuButton={
+                            <MenuButton style={{ backgroundColor: 'red' }}>
                                 <IconButton aria-label="settings">
                                     <MoreVertIcon className="icon" />
                                 </IconButton>
                             </MenuButton>}>
-                            <MenuItem onClick={update}>Update</MenuItem>
+                            {/* <MenuItem onClick={()=>setCurrentId(post._id)}>Update</MenuItem> */}
+                            <MenuItem onClick={ upDateData}>Update</MenuItem>
+
                             <MenuItem>Delete</MenuItem>
-                           
-                            
+
+
                         </Menu>
                     }
-                    title="Shrimp and Chorizo Paella"
+                    title={post.creator}
                     subheader="September 14, 2016"
                 />
                 <CardMedia
                     className={classes.media}
-                    image="/static/images/cards/paella.jpg"
+                    image={post.selectedFile}
                     title="Paella dish"
                 />
                 <CardContent className="card-content">
+                    <Typography variant="h6" component="h6">
+                        {post.title},
+                    </Typography>
                     <Typography variant="body2" component="p">
-                        This impressive paella is a perfect party dish and a fun meal to cook together with your
-                        guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                        {post.message}
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                         {console.log( post.tags.map((tag)=> `#${tag}`))}
+                         {post.tags.map((tag)=> `#${tag}`)}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>

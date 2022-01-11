@@ -49,9 +49,14 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
     const classes = useStyles();
+
     const dispatch = useDispatch();
 
+    const [currentId, setCurrentId]= useState(null);
+
     const [OpenPopUp, SetPopUp] = useState(false)
+
+    const [UpdatePopupText, setUpdatePopupText] = useState(false);
 
 
     useEffect(() => {
@@ -78,13 +83,14 @@ const App = () => {
 
                 <DialogBox
 
-                    title="Create Post"
+
+                    title={UpdatePopupText ? "Update Post": "Create Post"}
                     openPopup={OpenPopUp}
                     setopenPopup={SetPopUp}
 
                 >
 
-                    <Form/>
+                    <Form currentId={currentId} SetPopUp={SetPopUp} setCurrentId={setCurrentId}/>
 
                 </DialogBox>
 
@@ -92,7 +98,7 @@ const App = () => {
 
                   <Grid item className="post-grid"  lg={12} md={12} xs={12} sm={7}>
 
-                    <Posts/>
+                    <Posts setCurrentId={setCurrentId} SetPopUp={SetPopUp} setUpdatePopupText={setUpdatePopupText}/>
 
                   </Grid>
                   {/* <Grid item xs={12} sm={4}>
