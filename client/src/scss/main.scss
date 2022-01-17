@@ -8,19 +8,33 @@
 }
 
 html {
-    // background-color:;
+     
 }
 // App Bar component
 
 .header-bar {
     background-color: $Blue !important ;
     box-shadow: 0px 4px 14px -3px #d8d3cd;
+    display: flex !important;
+    justify-content: space-between !important;
+    flex-direction: row !important;
+    
+    .tool-bar{
+        border: 1px solid red;
+        width: 50%;
+
+    }
 
     h6 {
         color: $Pink;
         font-family: "Lobster", cursive;
         font-size: 3em;
         margin-left: 2rem;
+    }
+
+    a{
+        color: $White;
+        text-decoration: none;
     }
 }
 

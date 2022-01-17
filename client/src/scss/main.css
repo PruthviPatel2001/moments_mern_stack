@@ -9,6 +9,21 @@
   background-color: #6886C5 !important;
   -webkit-box-shadow: 0px 4px 14px -3px #d8d3cd;
           box-shadow: 0px 4px 14px -3px #d8d3cd;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: justify !important;
+      -ms-flex-pack: justify !important;
+          justify-content: space-between !important;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important;
+}
+
+.header-bar .tool-bar {
+  border: 1px solid red;
+  width: 50%;
 }
 
 .header-bar h6 {
@@ -16,6 +31,11 @@
   font-family: "Lobster", cursive;
   font-size: 3em;
   margin-left: 2rem;
+}
+
+.header-bar a {
+  color: #F9F9F9;
+  text-decoration: none;
 }
 
 .bottom-bar {

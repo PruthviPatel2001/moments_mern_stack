@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // styling imports 
 import { Container, Button, AppBar, Toolbar, IconButton, Fab, Typography, Grid } from '@material-ui/core'
@@ -10,14 +10,27 @@ import "./scss/main.css"
 import DialogBox from './components/DialogBox/DialogBox';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
+import NavBar from './components/NavBar/NavBar';
+import BottomNav from './components/NavBar/BottomNav';
+import Home from './Home/Home';
 //--------
 
 // redux imports
 import { useDispatch } from 'react-redux';
-import {getPosts} from './actions/posts'
+import { getPosts } from './actions/posts'
 
 
-const useStyles = makeStyles((theme) => ({
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useLocation,
+   
+} from "react-router-dom";
+import SignUp from './components/Auth/SignUp';
+
+export const useStyles = makeStyles((theme) => ({
 
     appBar: {
         top: 'auto',
@@ -52,7 +65,7 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-    const [currentId, setCurrentId]= useState(null);
+    const [currentId, setCurrentId] = useState(null);
 
     const [OpenPopUp, SetPopUp] = useState(false)
 
@@ -60,65 +73,39 @@ const App = () => {
 
 
     useEffect(() => {
-       
+
         dispatch(getPosts());
 
-    }, [currentId,dispatch])
+    }, [currentId, dispatch])
 
     return (
         <>
 
-            <AppBar position="static" className="header-bar">
-                <Toolbar>
-
-                    <Typography variant="h6" className={classes.title}>
-                        Moments
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-
-            <Container maxWidth="lg">
+            <NavBar />
 
 
-                <DialogBox
+            <Switch>
+
+                <Route exact path="/auth">
+
+                    <SignUp />
+
+                </Route>
+
+                <Route exact path='/'>
+
+                   <Home/>
+                   
+                </Route>
+
+            </Switch>
 
 
-                    title={UpdatePopupText ? "Update Post": "Create Post"}
-                    openPopup={OpenPopUp}
-                    setopenPopup={SetPopUp}
 
-                >
 
-                    <Form currentId={currentId} SetPopUp={SetPopUp} setCurrentId={setCurrentId}/>
+            <BottomNav SetPopUp={SetPopUp} />
 
-                </DialogBox>
 
-                <Grid container className="post-main-grid"  >
-
-                  {/* <Grid item className="post-grid"  lg={12} md={12} xs={12} sm={7}> */}
-
-                    <Posts setCurrentId={setCurrentId} SetPopUp={SetPopUp} setUpdatePopupText={setUpdatePopupText}/>
-
-                  {/* </Grid> */}
-                  {/* <Grid item xs={12} sm={4}>
-                      <Form/>
-                  </Grid> */}
-
-                </Grid>
-
-            </Container>
-
-            <AppBar position="fixed"  className={`${classes.appBar} bottom-bar`}>
-                <Toolbar>
-
-                    <Fab aria-label="add" onClick={() => SetPopUp(true)} className={`${classes.fabButton} round-btn` }>
-                        <AddIcon className='add-icon'/>
-                    </Fab>
-                    <div className={classes.grow} />
-
-                </Toolbar>
-            </AppBar>
 
         </>
     )
