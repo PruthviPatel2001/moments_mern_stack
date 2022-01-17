@@ -77,11 +77,15 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 !important;
+}
+
+.post-grid .makeStyles-root-6 {
+  min-width: 20rem !important;
+  max-width: 20rem !important;
 }
 
 .post-grid .card-Header {

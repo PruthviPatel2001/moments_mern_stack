@@ -96,11 +96,11 @@ const App = () => {
 
                 <Grid container className="post-main-grid"  >
 
-                  <Grid item className="post-grid"  lg={12} md={12} xs={12} sm={7}>
+                  {/* <Grid item className="post-grid"  lg={12} md={12} xs={12} sm={7}> */}
 
                     <Posts setCurrentId={setCurrentId} SetPopUp={SetPopUp} setUpdatePopupText={setUpdatePopupText}/>
 
-                  </Grid>
+                  {/* </Grid> */}
                   {/* <Grid item xs={12} sm={4}>
                       <Form/>
                   </Grid> */}

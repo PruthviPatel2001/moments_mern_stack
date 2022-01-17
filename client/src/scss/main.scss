@@ -81,8 +81,18 @@ html {
 .post-grid {
     // border: 1px solid yellow;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 !important;
+    // flex-wrap: wrap;
+
+    .makeStyles-root-6{
+        // border: 1px solid yellow;
+        min-width: 20rem !important;
+        max-width: 20rem !important;
+        
+
+
+    }
 
     .card-Header {
         background-color: $Blue;
