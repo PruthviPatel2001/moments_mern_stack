@@ -1,0 +1,159 @@
+import React, { useState } from 'react'
+
+import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core'
+
+import { GoogleLogin } from 'react-google-login'
+
+import { useDispatch } from 'react-redux'
+
+import {useHistory} from 'react-router-dom'
+
+import Input from './Input'
+
+const SignUp = () => {
+
+
+
+    const [showPassword, setshowPassword] = useState(false);
+    const [isSignup, setisSignUp] = useState(false);
+    const history = useHistory()
+
+    
+
+    const dispatch = useDispatch()
+
+
+    const handelSubmit = () => {
+
+    }
+
+    const handelChange = () => {
+
+    }
+
+    const handelShowPassword = () => {
+        setshowPassword((prevShowPassword) => !prevShowPassword)
+    }
+
+    const switchMode = () => {
+        setisSignUp(!isSignup)
+        handelShowPassword(false)
+    }
+
+    const googleSuccess = async (res) => {
+        
+        console.log("google sign in successfull ");
+
+        console.log(res);
+
+        const result = res?.profileObj
+        const token = res?.tokenId;
+
+        try {
+
+            dispatch(
+                {
+                    type: 'AUTH', data: { result, token }
+                }
+            )
+
+            history.push('/')
+
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+    const googleFailure = () => {
+        console.log("google sign in unsuccessfull . try again");
+    }
+
+    return (
+        <Container component="main" maxWidth="xs">
+
+            <Paper elevation={3}>
+
+                <Avatar>
+                    p
+                </Avatar>
+
+
+
+                <Typography variant='h5'>
+                    {isSignup ? 'Sign up' : 'Sign in'}
+                </Typography>
+
+                <form onSubmit={handelSubmit}>
+
+                    <Grid container spacing={2}>
+
+                        {
+                            isSignup && (
+                                <>
+
+
+                                    <Input name="firstName" label="First Name" handelChange={handelChange} autoFocus half />
+                                    <Input name="lastName" label="Last Name" handelChange={handelChange} half />
+
+
+
+                                </>
+                            )
+                        }
+
+                        <Input name='email' label="Email-Id" handelChange={handelChange} type="email" />
+                        <Input name='password' label="Password" handelChange={handelChange} type={showPassword ? 'text' : 'password'} handelShowPassword={handelShowPassword} />
+
+                        {isSignup && <Input name='confirmpassword' label="Confirm password" handelChange={handelChange} type='password' />}
+
+                        <Button type="submit" fullwidth variant="contained">
+
+                            {isSignup ? 'Sign Up' : 'Sign in'}
+
+                        </Button>
+
+                        <GoogleLogin
+
+                            clientId='243299781491-eu56idd2i60dl1h5llse1vvnmvvv5ot0.apps.googleusercontent.com'
+                            render={(renderProps) => (
+                                <Button
+                                    className='' color='primary'
+                                    fullwidth onClick={renderProps.onClick}
+                                    disabled={renderProps.disabled} startIcon=''
+                                    variant="contained"
+
+                                >
+
+                                    Google Sign In
+
+                                </Button>
+                            )}
+                            onSuccess={googleSuccess}
+                            onFailure={googleFailure}
+                            cookiePolicy="single_host_origin"
+
+                        />
+
+
+
+                        <Grid container justifyContent="flex-end">
+
+                            <Button onClick={switchMode}>
+
+                                {isSignup ? 'Already have account ? Sign In' : ' don"t have account ? Sign Up'}
+
+                            </Button>
+
+                        </Grid>
+
+                    </Grid>
+
+                </form>
+            </Paper>
+
+        </Container >
+    )
+}
+
+export default SignUp

@@ -9,12 +9,12 @@ import { useStyles } from '../App'
 import { useDispatch } from 'react-redux';
 import {getPosts} from '../actions/posts'
 
-const Home = () => {
+const Home = ({OpenPopUp,SetPopUp}) => {
     const dispatch = useDispatch();
 
     const [currentId, setCurrentId] = useState(null);
 
-    const [OpenPopUp, SetPopUp] = useState(false)
+    // const [OpenPopUp, SetPopUp] = useState(false)
 
     const [UpdatePopupText, setUpdatePopupText] = useState(false);
 

@@ -26,9 +26,9 @@ import {
     Switch,
     Route,
     useLocation,
-   
+
 } from "react-router-dom";
-import SignUp from './components/Auth/SignUp';
+import Auth from './components/Auth/Auth';
 
 export const useStyles = makeStyles((theme) => ({
 
@@ -81,29 +81,29 @@ const App = () => {
     return (
         <>
 
-            <NavBar />
 
+            <NavBar />
 
             <Switch>
 
                 <Route exact path="/auth">
 
-                    <SignUp />
+                    <Auth />
 
                 </Route>
 
                 <Route exact path='/'>
+                    {/* <NavBar /> */}
 
-                   <Home/>
-                   
+
+                    <Home OpenPopUp={OpenPopUp} SetPopUp={SetPopUp} />
+
+                    <BottomNav SetPopUp={SetPopUp} />
                 </Route>
 
             </Switch>
 
 
-
-
-            <BottomNav SetPopUp={SetPopUp} />
 
 
 

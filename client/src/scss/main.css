@@ -26,6 +26,23 @@
   width: 50%;
 }
 
+.header-bar .profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.header-bar .profile .item {
+  margin-left: 1rem;
+}
+
 .header-bar h6 {
   color: #FFACB7;
   font-family: "Lobster", cursive;

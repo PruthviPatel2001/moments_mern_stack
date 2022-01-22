@@ -1,22 +1,66 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link, NavLink,useLocation,useHistory } from 'react-router-dom'
+
 import { useStyles } from '../../App';
 import { Button, AppBar, Toolbar, Typography, Avatar } from '@material-ui/core'
-import { Link, NavLink } from 'react-router-dom'
+
+import {useDispatch} from 'react-redux'
 
 const NavBar = () => {
     const classes = useStyles();
 
-    const user = null;
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+    const [FirstLetter, setFirstLetter] = useState(null);
+    
+    const dispatch= useDispatch()
+    const history = useHistory()
+    const location = useLocation() 
+
+    console.log("from nav bar", user);
+
+    
+
+
+    const logout = () =>{
+         dispatch({type:'LOGOUT'})
+
+         history.push('/')
+         setUser(null)
+         
+    }
+
+
+    useEffect(() => {
+
+        const token = user?.token;
+
+
+        setUser(JSON.parse(localStorage.getItem('profile')))
+
+        setFirstLetter (user?.result.name
+        .split(' ')
+        .map(word => word[0])
+        .join(''))
+
+
+
+
+    }, [location]) // usefffect only called when location get chagne in this loacation change from 
+                    // "/auth" -> "/"  if u reload page useEffect wont get called because it going to be same lpcation
 
     return (
-        <AppBar position="static" className="header-bar" style={{display:'flex',justifyContent:'space-between'}}>
+        <AppBar position="static" className="header-bar" style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Toolbar className="to-bar">
 
-                <Typography component={Link} to="/" variant="h6" className={classes.title}>
-                    Moments
-                </Typography>
+                <Link to='/'>
+                    <Typography variant="h6" className={classes.title}>
+                        Moments
+                    </Typography>
 
-              
+                </Link>
+
+
 
 
             </Toolbar>
@@ -24,18 +68,28 @@ const NavBar = () => {
             <Toolbar>
                 {user ?
                     <div className='profile'>
-
                         <Avatar>
-                            P
+                            {FirstLetter}
                         </Avatar>
 
-                        <Typography variant='h6' component="h6">
-                            Pruthvi
-                        </Typography>
+                        <div className="item">
+                            <Typography variant='body2' component="p">
+                                {user.result.name}
+                            </Typography>
 
-                        <Button variant='outlined'>
-                            Logout
-                        </Button>
+                        </div>
+                        <div className="item">
+                            <Button variant='outlined' onClick={logout}>
+                                Logout
+                            </Button>
+
+                        </div>
+
+
+
+
+
+
 
                     </div> : (
 
