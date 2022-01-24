@@ -47,7 +47,7 @@ export const updatePost = (id, post) => async (dispatch) => {
 
     try {
 
-        console.log("post id (action file):", id);
+        console.log("post id (action file):", id,post);
         const { data } = await api.updatePost(id, post);
 
 

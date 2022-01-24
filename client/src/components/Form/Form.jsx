@@ -42,9 +42,10 @@ const useStyles = makeStyles((theme) => ({
 const Form = ({ currentId, setCurrentId,SetPopUp }) => {
 
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem('profile'))
 
     const [postData, SetPostData] = useState({
-        creator: '',
+        // creator: '',
         title: '',
         message: '',
         tags: '',
@@ -75,14 +76,16 @@ const Form = ({ currentId, setCurrentId,SetPopUp }) => {
 
         e.preventDefault();
 
+        console.log("update error debug",postData);
+
         if (currentId) {
             console.log("in form comp:", currentId);
-            dispatch(updatePost(currentId, postData))
+            dispatch(updatePost(currentId, {...postData,name:user?.result?.name}))
            
 
         } else {
 
-            dispatch(createPost(postData))
+            dispatch(createPost({...postData,name:user?.result?.name}))
         }
 
         clear();
@@ -96,7 +99,7 @@ const Form = ({ currentId, setCurrentId,SetPopUp }) => {
 
         setCurrentId(null)
         SetPostData({
-            creator: '',
+            // creator: '',
             title: '',
             message: '',
             tags: '',
@@ -114,6 +117,17 @@ const Form = ({ currentId, setCurrentId,SetPopUp }) => {
 
     }, [post]);
 
+
+    if(!user?.result?.name){
+        return(
+            <Paper>
+                <Typography variant="h6" align="center">
+                     please sign in to create post and like post.
+                </Typography>
+            </Paper>
+        )
+    }
+
     return (
         <>
 
@@ -123,11 +137,11 @@ const Form = ({ currentId, setCurrentId,SetPopUp }) => {
 
                 <div className="item">
 
-                    <NewTextField
+                    {/* <NewTextField
                         margin='dense' name="creator"
                         variant="outlined" label="Creator"
                         value={postData.creator} onChange={InputEvent}
-                    />
+                    /> */}
 
                     <NewTextField
                         margin='dense' name="title"

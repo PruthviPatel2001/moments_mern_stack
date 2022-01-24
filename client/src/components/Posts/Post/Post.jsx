@@ -43,11 +43,26 @@ const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
         // console.log("hello post");
     }
 
-    const Namefirst2 = post.creator.split(' ').slice(0, 2).join(' ');
-    const firstLetters = post.creator
-    .split(' ')
-    .map(word => word[0])
-    .join('');
+    // const Namefirst2 = post.creator.split(' ').slice(0, 2).join(' ');
+    // const firstLetters = post.creator
+    // .split(' ')
+    // .map(word => word[0])
+    // .join('');
+
+    const user = JSON.parse(localStorage.getItem('profile'));
+
+    const Likes = () => {
+        if (post.likes.length > 0) {
+          return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
+            ? (
+              <><FavoriteIcon color="secondary" fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
+            ) : (
+              <><FavoriteIcon variant="outlined" fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+            );
+        }
+    
+        return <><FavoriteIcon variant="outlined" fontSize="small" />&nbsp;Like</>;
+      };
 
     return (
         <div>
@@ -56,11 +71,13 @@ const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
                     className="card-Header"
                     avatar={
                         <Avatar aria-label="recipe" className={classes.avatar}>
-                            {firstLetters}
+                            {/* {firstLetters} */}
                         </Avatar>
                     }
                     action={
 
+                       (user?.result?.googleId === post?.creator ||user?.result?._id===post?.creator) &&
+                
                         <Menu style={{ backgroundColor: 'red' }} menuButton={
                             <MenuButton style={{ backgroundColor: 'red' }}>
                                 <IconButton aria-label="settings">
@@ -75,7 +92,7 @@ const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
 
                         </Menu>
                     }
-                    title={post.creator}
+                    title={post.name?post.name:post.creator}
                     subheader="September 14, 2016"
                 />
                 <CardMedia
@@ -96,8 +113,8 @@ const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites" onClick={()=>dispatch(likePost(post._id))}>
-                        <FavoriteIcon  /> {post.likeCount}
+                    <IconButton aria-label="add to favorites"  disabled={!user?.result} onClick={()=>dispatch(likePost(post._id))}>
+                        <Likes />
                     </IconButton>
 
 

@@ -6,9 +6,19 @@ import { GoogleLogin } from 'react-google-login'
 
 import { useDispatch } from 'react-redux'
 
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+
+import {signin,signup} from '../../actions/auth'
 
 import Input from './Input'
+
+const initialState = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+}
 
 const SignUp = () => {
 
@@ -16,18 +26,36 @@ const SignUp = () => {
 
     const [showPassword, setshowPassword] = useState(false);
     const [isSignup, setisSignUp] = useState(false);
+    const [formData, setformData] = useState(initialState);
     const history = useHistory()
 
-    
+
+
+
 
     const dispatch = useDispatch()
 
 
-    const handelSubmit = () => {
+    const handelSubmit = (e) => {
+        e.preventDefault()
+        console.log(formData);
+
+        if (isSignup) {
+            dispatch(signup(formData, history))
+        } else {
+            dispatch(signin(formData, history))
+
+        }
 
     }
 
-    const handelChange = () => {
+    const handelChange = (e) => {
+
+        const name = e.target.name;
+        const value = e.target.value;
+        setformData(
+            { ...formData, [name]: value }
+        )
 
     }
 
@@ -37,11 +65,11 @@ const SignUp = () => {
 
     const switchMode = () => {
         setisSignUp(!isSignup)
-        handelShowPassword(false)
+        setshowPassword(false)
     }
 
     const googleSuccess = async (res) => {
-        
+
         console.log("google sign in successfull ");
 
         console.log(res);
@@ -105,7 +133,7 @@ const SignUp = () => {
                         <Input name='email' label="Email-Id" handelChange={handelChange} type="email" />
                         <Input name='password' label="Password" handelChange={handelChange} type={showPassword ? 'text' : 'password'} handelShowPassword={handelShowPassword} />
 
-                        {isSignup && <Input name='confirmpassword' label="Confirm password" handelChange={handelChange} type='password' />}
+                        {isSignup && <Input name='confirmPassword' label="Confirm password" handelChange={handelChange} type='password' />}
 
                         <Button type="submit" fullwidth variant="contained">
 

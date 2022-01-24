@@ -32,7 +32,8 @@ export const createPost = async (req, res) => {
 
     console.log("in Post js", post);
 
-    const newPost = new PostMessage(post)
+    // const newPost = new PostMessage(post)
+    const newPost = new PostMessage({...post , creator:req.userId , createdAt:new Date().toISOString()})
 
     try {
 
@@ -60,7 +61,7 @@ export const updatePost = async (req, res) => {
     }
 
 
-    const updatedPost = { ...post, _id: id };
+    const updatedPost = { ...post, _id: id  };
    
     await PostMessage.findByIdAndUpdate(id, updatedPost,{new:true})
 
@@ -89,16 +90,33 @@ export const likePost = async (req, res) => {
 
     const { id } = req.params;
 
-    
+    if(!req.userId){
+        return res.json({message:'unaunthenticated..'})
+    }
 
-    
 
     if (!mongoose.Types.ObjectId.isValid(id)){
         return res.staus(404).send('nopost with that id')
     }
 
     const post = await PostMessage.findById(id);
-    const updatedPost = await PostMessage.findByIdAndUpdate(id,{likeCount: post.likeCount + 1},{new:true})
+
+    // to check if post which we get above is liked by login person 
+    const index = post.likes.findIndex((id)=> id === String(req.userId))
+
+    if(index===-1){ //if he not like the post
+        
+        //then like the post
+        post.likes.push(req.userId);
+
+    }else{
+        // dislike post , remove his id from likes array
+        post.likes = post.likes.filter((id)=> id !== String(req.userId))
+    }
+
+    // const updatedPost = await PostMessage.findByIdAndUpdate(id,{likeCount: post.likeCount + 1},{new:true})
+    const updatedPost = await PostMessage.findByIdAndUpdate(id,post,{new:true})
+
 
 
     

@@ -5,5 +5,6 @@ export const actionTypes ={
     FETCH_ALL:'FETCH_ALL',
     LIKE:'LIKE',
     AUTH:'AUTH',
-    LOGOUT:'LOGOUT'
+    LOGOUT:'LOGOUT',
+    
 } 

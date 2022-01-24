@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, NavLink,useLocation,useHistory } from 'react-router-dom'
-
+import decode from 'jwt-decode'
 import { useStyles } from '../../App';
 import { Button, AppBar, Toolbar, Typography, Avatar } from '@material-ui/core'
 
@@ -34,6 +34,10 @@ const NavBar = () => {
     useEffect(() => {
 
         const token = user?.token;
+
+        if(token){
+            const decodedToken = decode(token)
+        }
 
 
         setUser(JSON.parse(localStorage.getItem('profile')))
