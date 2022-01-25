@@ -21,10 +21,10 @@ const Posts = ({ setCurrentId, SetPopUp, setUpdatePopupText }) => {
                     {posts.map((post) => {
 
                         return (
-                            <Grid item className="post-grid" lg={4} md={4} xs={12} sm={12}>
+                            <Grid item className="post-grid" lg={4} md={4} xs={12} sm={12} key={post._id}>
 
 
-                                <div className="post-card" key={post._id}>
+                                <div className="post-card" >
 
                                     <Post post={post} setCurrentId={setCurrentId} SetPopUp={SetPopUp} setUpdatePopupText={setUpdatePopupText} />
 

@@ -13,8 +13,9 @@ import { deletePost,likePost } from '../../../actions/posts';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
-        marginTop: "1.5rem",
+        // maxWidth: 345,
+        // marginTop: "1.5rem",
+        // minWidth:344
 
 
     },
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '56.25%', // 16:9
     },
 }));
+
 
 const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
 
@@ -65,8 +67,8 @@ const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
       };
 
     return (
-        <div>
-            <Card className={classes.root}>
+        <>
+            <Card className={`${classes.root} card-body`}>
                 <CardHeader
                     className="card-Header"
                     avatar={
@@ -122,7 +124,7 @@ const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
                 </CardActions>
 
             </Card>
-        </div>
+        </>
     )
 }
 

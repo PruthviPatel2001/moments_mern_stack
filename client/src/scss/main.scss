@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 @import "_var.scss";
 * {
@@ -8,7 +8,6 @@
 }
 
 html {
-     
 }
 // App Bar component
 
@@ -18,22 +17,20 @@ html {
     display: flex !important;
     justify-content: space-between !important;
     flex-direction: row !important;
-    
-    .tool-bar{
+
+    .tool-bar {
         border: 1px solid red;
         width: 50%;
-
     }
 
-    .profile{
+    .profile {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        .item{
+        .item {
             margin-left: 1rem;
         }
-        
     }
 
     h6 {
@@ -43,7 +40,7 @@ html {
         margin-left: 2rem;
     }
 
-    a{
+    a {
         color: $White;
         text-decoration: none;
     }
@@ -99,58 +96,100 @@ html {
 }
 
 // Post Component
+
+.post-container{
+    min-height: 140vh;
+    padding: 0 1rem;
+    margin: 0 0.8rem;
+}
+
 .post-main-grid {
     // border: 1px solid red;
     margin-top: 1.5rem !important;
 }
-.post-grid {
-    // border: 1px solid yellow;
+
+.post-box-grid{
+
     display: flex;
-    justify-content: center;
-    padding: 0 !important;
-    // flex-wrap: wrap;
+    flex-wrap: wrap;
 
-    .makeStyles-root-6{
+    .post-grid {
         // border: 1px solid yellow;
-        min-width: 20rem !important;
-        max-width: 20rem !important;
-        
-
-
-    }
-
-    .card-Header {
-        background-color: $Blue;
-
-        color: $White;
-        .icon {
-            color: $Pink;
+        display: flex;
+        justify-content: center;
+        padding: 0 !important;
+        // flex-wrap: wrap;
+    
+        .post-card {
+            // border: 1px solid yellow;
+            width: 18rem;
+            // max-height: 40rem;
+            margin-top: 1rem;
         }
-    }
-
-    .szh-menu-button {
-        background-color: transparent !important;
-        box-shadow: none !important;
-        border: none !important;
-    }
-    .szh-menu {
-        color: black;
-        // padding: 0.4rem 0.8rem;
-
-        .szh-menu__item {
-            // border: 1px solid red;
-            padding: 0.4rem 1rem !important;
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-
-            &:hover{
-                background-color: none !important;
+        
+        .card-body {
+            height: 25rem;
+        }
+    
+        .card-Header {
+            background-color: $Blue;
+    
+            color: $White;
+            .icon {
+                color: $Pink;
             }
         }
+    
+        .szh-menu-button {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        .szh-menu {
+            color: black;
+            // padding: 0.4rem 0.8rem;
+    
+            .szh-menu__item {
+                // border: 1px solid red;
+                padding: 0.4rem 1rem !important;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+    
+                &:hover {
+                    background-color: none !important;
+                }
+            }
+        }
+        .card-content {
+            // background-color: $Pink;
+            border-top: 1px solid rgba(0, 0, 0, 0.226);
+    
+            // color: $White ;
+        }
     }
-    .card-content {
-        // background-color: $Pink;
-        border-top: 1px solid rgba(0, 0, 0, 0.226);
+}
 
-        // color: $White ;
+
+/// Responsive ///
+
+@media screen and (min-width: 786px) and (max-width: 1024px) {
+    .post-main-grid {
+        // border: 1px solid red;
+        // margin-top: 1.5rem !important;
+    }
+
+    .post-card {
+        // border: 1px solid yellow;
+        width: 18rem !important;
+    }
+
+    .card-body {
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 785px) {
+
+    .card-body {
+        margin-top: 1rem;
     }
 }

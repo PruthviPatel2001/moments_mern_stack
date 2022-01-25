@@ -26,9 +26,11 @@ import {
     Switch,
     Route,
     useLocation,
+    Redirect
 
 } from "react-router-dom";
 import Auth from './components/Auth/Auth';
+import PostDetails from './components/PostDetails/PostDetails';
 
 export const useStyles = makeStyles((theme) => ({
 
@@ -71,6 +73,8 @@ const App = () => {
 
     const [UpdatePopupText, setUpdatePopupText] = useState(false);
 
+    const user = JSON.parse(localStorage.getItem('profile'));
+
 
     useEffect(() => {
 
@@ -88,18 +92,31 @@ const App = () => {
 
                 <Route exact path="/auth">
 
-                    <Auth />
+                   {!user ? <Auth /> : <Redirect to='/posts'/>} 
 
                 </Route>
 
-                <Route exact path='/'>
-                    {/* <NavBar /> */}
+                <Route exact path='/' component={() => <Redirect to="/posts" />} />
+                {/* <NavBar /> */}
 
+                <Route exact path='/posts'>
 
                     <Home OpenPopUp={OpenPopUp} SetPopUp={SetPopUp} />
 
                     <BottomNav SetPopUp={SetPopUp} />
+
                 </Route>
+
+                <Route exact path='/posts/search'>
+
+                    <Home OpenPopUp={OpenPopUp} SetPopUp={SetPopUp} />
+
+                    <BottomNav SetPopUp={SetPopUp} />
+
+                </Route>
+
+                <Route exact path='/posts/:id' component={PostDetails} />
+
 
             </Switch>
 

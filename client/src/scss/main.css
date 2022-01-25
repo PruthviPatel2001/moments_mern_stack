@@ -106,11 +106,25 @@
   color: #FFE0AC;
 }
 
+.post-container {
+  min-height: 140vh;
+  padding: 0 1rem;
+  margin: 0 0.8rem;
+}
+
 .post-main-grid {
   margin-top: 1.5rem !important;
 }
 
-.post-grid {
+.post-box-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.post-box-grid .post-grid {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -120,41 +134,60 @@
   padding: 0 !important;
 }
 
-.post-grid .makeStyles-root-6 {
-  min-width: 20rem !important;
-  max-width: 20rem !important;
+.post-box-grid .post-grid .post-card {
+  width: 18rem;
+  margin-top: 1rem;
 }
 
-.post-grid .card-Header {
+.post-box-grid .post-grid .card-body {
+  height: 25rem;
+}
+
+.post-box-grid .post-grid .card-Header {
   background-color: #6886C5;
   color: #F9F9F9;
 }
 
-.post-grid .card-Header .icon {
+.post-box-grid .post-grid .card-Header .icon {
   color: #FFACB7;
 }
 
-.post-grid .szh-menu-button {
+.post-box-grid .post-grid .szh-menu-button {
   background-color: transparent !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
   border: none !important;
 }
 
-.post-grid .szh-menu {
+.post-box-grid .post-grid .szh-menu {
   color: black;
 }
 
-.post-grid .szh-menu .szh-menu__item {
+.post-box-grid .post-grid .szh-menu .szh-menu__item {
   padding: 0.4rem 1rem !important;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
-.post-grid .szh-menu .szh-menu__item:hover {
+.post-box-grid .post-grid .szh-menu .szh-menu__item:hover {
   background-color: none !important;
 }
 
-.post-grid .card-content {
+.post-box-grid .post-grid .card-content {
   border-top: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+@media screen and (min-width: 786px) and (max-width: 1024px) {
+  .post-card {
+    width: 18rem !important;
+  }
+  .card-body {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 785px) {
+  .card-body {
+    margin-top: 1rem;
+  }
 }
 /*# sourceMappingURL=main.css.map */
