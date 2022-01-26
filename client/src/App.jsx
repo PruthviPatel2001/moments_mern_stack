@@ -76,11 +76,12 @@ const App = () => {
     const user = JSON.parse(localStorage.getItem('profile'));
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        dispatch(getPosts());
+    //     dispatch(getPosts());
 
-    }, [currentId, dispatch])
+    // }, [currentId, dispatch])
+    
 
     return (
         <>
@@ -99,7 +100,7 @@ const App = () => {
                 <Route exact path='/' component={() => <Redirect to="/posts" />} />
                 {/* <NavBar /> */}
 
-                <Route exact path='/posts'>
+                <Route exact path='/posts'>``
 
                     <Home OpenPopUp={OpenPopUp} SetPopUp={SetPopUp} />
 

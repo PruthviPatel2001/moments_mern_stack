@@ -8,20 +8,25 @@ import { useSelector } from 'react-redux'
 
 const Posts = ({ setCurrentId, SetPopUp, setUpdatePopupText }) => {
 
-    const posts = useSelector((state) => state.posts)
+    const {posts, isLoading} = useSelector((state) => state.posts) // []=>{posts:[]}
 
-    console.log("from here Posts.jsx:", posts);
+    // console.log("from here Posts.jsx:", posts);
+
+    if(!posts.length && !isLoading) return ' No Posts'
 
     return (
         <>
 
-            {!posts.length ? <CircularProgress /> : (
+            {isLoading ? <CircularProgress /> : (
 
                 <>
+
+                 <Grid container alignItems='stretch' spacing={3}>
+
                     {posts.map((post) => {
 
                         return (
-                            <Grid item className="post-grid" lg={4} md={4} xs={12} sm={12} key={post._id}>
+                            <Grid item className="post-grid" lg={4} md={6} xs={12} sm={12} key={post._id}>
 
 
                                 <div className="post-card" >
@@ -30,11 +35,15 @@ const Posts = ({ setCurrentId, SetPopUp, setUpdatePopupText }) => {
 
                                 </div>
                             </Grid>
-                                )
+                            
+                            )
 
 
 
                     })}
+
+
+                 </Grid>
 
 
                 </>

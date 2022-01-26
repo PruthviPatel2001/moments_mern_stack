@@ -112,6 +112,33 @@
   margin: 0 0.8rem;
 }
 
+.post-container .side-box {
+  margin-top: 0.4rem;
+  padding: 0.8rem;
+}
+
+.post-container .side-box .paper {
+  padding: 0.8rem;
+}
+
+.post-container .side-box .paper .btn-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 1rem;
+}
+
+.post-container .side-box .paper .btn-box .btn-1 {
+  background-color: #6886C5;
+}
+
+.post-container .side-box .paper .btn-box .btn-2 {
+  background-color: #FFACB7;
+}
+
 .post-main-grid {
   margin-top: 1.5rem !important;
 }
@@ -120,8 +147,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 
 .post-box-grid .post-grid {

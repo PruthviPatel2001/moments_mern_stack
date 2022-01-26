@@ -8,13 +8,21 @@ import PostMessage from '../models/postMessage.js'
 
 export const getPosts = async (req, res) => {
 
+    const {page} = req.query;
+
     try {
 
-        const postMessage = await PostMessage.find()
+        const LIMIT = 6;
+        const startIndex= (Number(page) - 1) * LIMIT // get starting index of every page
+
+        const total = await  PostMessage.countDocuments({})
+
+        
+        const posts = await PostMessage.find().sort({_id:-1}).limit(LIMIT).skip(startIndex)
 
         // console.log(postMessage);
 
-        res.status(200).json(postMessage);
+        res.json({data:posts,currentPage: Number(page),numberOfPages: Math.ceil(total/LIMIT)});
 
 
     } catch (error) {
@@ -22,6 +30,26 @@ export const getPosts = async (req, res) => {
         res.status(404).json({ message: error.message });
 
 
+    }
+
+}
+
+
+
+export const getPostsBySearch = async (req, res) => {
+
+    const {searchQuery,tags}= req.query
+
+    try {
+        const title = new RegExp(searchQuery, 'i'); // TEST,Test,test all would count same using regexp
+
+        const posts = await PostMessage.find({ $or:[ {title} , { tags: { $in: tags.split(',') } } ] } )
+        
+        res.json({data:posts})
+        
+    } catch (error) {
+
+        res.staus(404).json({message:error.message})
     }
 
 }

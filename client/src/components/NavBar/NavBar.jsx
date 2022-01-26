@@ -17,7 +17,7 @@ const NavBar = () => {
     const history = useHistory()
     const location = useLocation() 
 
-    console.log("from nav bar", user);
+    // console.log("from nav bar", user);
 
     
 

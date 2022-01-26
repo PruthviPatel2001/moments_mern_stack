@@ -101,17 +101,44 @@ html {
     min-height: 140vh;
     padding: 0 1rem;
     margin: 0 0.8rem;
+
+
+    .side-box{
+        margin-top: 0.4rem;
+        padding: 0.8rem;
+    // border: 1px solid red;
+
+
+        .paper{
+            padding: 0.8rem;
+
+            .btn-box{
+                display: flex;
+                justify-content: space-evenly;
+                margin-top: 1rem;
+                
+                .btn-1{
+                    background-color: $Blue;
+                }
+                .btn-2{
+                    background-color: $Pink;
+                }
+            }
+
+        }
+    }
 }
 
 .post-main-grid {
-    // border: 1px solid red;
     margin-top: 1.5rem !important;
 }
 
 .post-box-grid{
-
+    
+    // border: 1px solid red;
     display: flex;
-    flex-wrap: wrap;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
 
     .post-grid {
         // border: 1px solid yellow;

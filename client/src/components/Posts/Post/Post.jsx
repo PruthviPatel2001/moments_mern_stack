@@ -110,7 +110,7 @@ const Post = ({ post,setCurrentId,SetPopUp,setUpdatePopupText }) => {
                         {post.message}
                     </Typography>
                     <Typography variant="body2" component="p">
-                         {console.log( post.tags.map((tag)=> `#${tag}`))}
+                         {/* {console.log( post.tags.map((tag)=> `#${tag}`))} */}
                          {post.tags.map((tag)=> `#${tag}`)}
                     </Typography>
                 </CardContent>

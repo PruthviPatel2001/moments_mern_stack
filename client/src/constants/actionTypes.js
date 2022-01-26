@@ -1,10 +1,23 @@
 export const actionTypes ={
+    
     UPDATE:"UPDATE",
+
     CREATE:'CREATE',
+
     DELETE:'DELETE',
+
     FETCH_ALL:'FETCH_ALL',
+
     LIKE:'LIKE',
+
     AUTH:'AUTH',
+
     LOGOUT:'LOGOUT',
+
+    FETCH_BY_SEARCH:'FETCH_BY_SEARCH',
+
+    START_LOADING:'START_LOADING',
+
+    END_LOADING:'END_LOADING'
     
 } 

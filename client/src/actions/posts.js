@@ -3,21 +3,30 @@ import { actionTypes } from '../constants/actionTypes';
 
 // Actions Creators
 
-export const getPosts = () => async (dispatch) => { // for redux-think (async (dispatch ) having func in func)
+export const getPosts = (page) => async (dispatch) => { // for redux-think (async (dispatch ) having func in func)
 
     try {
 
-        const { data } = await api.fetchPosts();
+        
+        dispatch({type:actionTypes.START_LOADING})
+
+        const { data} = await api.fetchPosts(page);
 
         // const action = {
         //     type:'FETCH_ALL',
         //     payload:[]
         // }
 
+        console.log(data);
+
         dispatch({
             type: actionTypes.FETCH_ALL,
             payload: data
         });
+
+        dispatch({type:actionTypes.END_LOADING})
+
+
     } catch (error) {
         console.log("error in getPosts action/posts.js : ", error);
     }
@@ -25,15 +34,47 @@ export const getPosts = () => async (dispatch) => { // for redux-think (async (d
 
 }
 
+export const getPostBySearch = (searchQuery) => async(dispatch)=>{
+
+    try {
+
+        dispatch({type:actionTypes.START_LOADING})
+
+
+        const { data:{data} }= await api.fetchPostBySearch(searchQuery);
+
+        console.log(data);
+
+        dispatch({
+            type: actionTypes.FETCH_BY_SEARCH,
+            payload: data
+        });
+
+        dispatch({type:actionTypes.END_LOADING})
+
+
+
+        
+    } catch (error) {
+
+        console.log(error);
+        
+    }
+}
+
 export const createPost = (post) => async (dispatch) => {
 
     try {
+        dispatch({type:actionTypes.START_LOADING})
 
         const { data } = await api.createPost(post);
 
         console.log("datat action file:", data);
 
         dispatch({ type: actionTypes.CREATE, payload: data })
+
+        dispatch({type:actionTypes.END_LOADING})
+
 
 
     } catch (error) {
