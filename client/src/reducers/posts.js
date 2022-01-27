@@ -20,11 +20,12 @@ export default (state = { isLoading:true , posts:[] }, action) => {
 
       }
 
+    case actionTypes.FETCH_POST: // for single post
+      return { ...state , post: action.payload.post };
+
+
     case actionTypes.FETCH_BY_SEARCH:
-      return {
-        ...state,
-        posts: action.payload
-      };
+      return { ...state ,  posts: action.payload.data  };
 
     case actionTypes.CREATE:
 

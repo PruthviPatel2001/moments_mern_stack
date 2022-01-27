@@ -6,6 +6,21 @@ import PostMessage from '../models/postMessage.js'
 
 // const PostMessage = require('../models/postMessage.js')
 
+export const getSinglePost = async (req,res) =>{
+
+    const {id} = req.params;
+    console.log("form backed:",id);
+
+    try {
+        const post = await PostMessage.findById(id)
+        // console.log(post);
+        res.status(200).json(post)
+        
+    } catch (error) {
+        res.status(404).json({message:"here is error"})
+    }
+}
+
 export const getPosts = async (req, res) => {
 
     const {page} = req.query;
@@ -34,11 +49,11 @@ export const getPosts = async (req, res) => {
 
 }
 
-
-
 export const getPostsBySearch = async (req, res) => {
 
     const {searchQuery,tags}= req.query
+
+    console.log("in get post by search method method, ",tags,searchQuery);
 
     try {
         const title = new RegExp(searchQuery, 'i'); // TEST,Test,test all would count same using regexp

@@ -100,7 +100,7 @@ const App = () => {
                 <Route exact path='/' component={() => <Redirect to="/posts" />} />
                 {/* <NavBar /> */}
 
-                <Route exact path='/posts'>``
+                <Route exact path='/posts'>
 
                     <Home OpenPopUp={OpenPopUp} SetPopUp={SetPopUp} />
 

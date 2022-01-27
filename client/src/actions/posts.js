@@ -3,6 +3,32 @@ import { actionTypes } from '../constants/actionTypes';
 
 // Actions Creators
 
+export const getSinglePost = (id) => async (dispatch) => { 
+  
+    try {
+
+        
+        dispatch({type:actionTypes.START_LOADING})
+
+        const { data} = await api.fetchPost(id);
+
+        console.log(data);
+
+        dispatch({
+            type: actionTypes.FETCH_POST,
+            payload: {post:data}
+        });
+
+        dispatch({type:actionTypes.END_LOADING})
+
+
+    } catch (error) {
+        console.log("error in getPost action/posts.js : ", error);
+    }
+
+
+}
+
 export const getPosts = (page) => async (dispatch) => { // for redux-think (async (dispatch ) having func in func)
 
     try {
@@ -47,7 +73,7 @@ export const getPostBySearch = (searchQuery) => async(dispatch)=>{
 
         dispatch({
             type: actionTypes.FETCH_BY_SEARCH,
-            payload: data
+            payload: {data}
         });
 
         dispatch({type:actionTypes.END_LOADING})
@@ -62,7 +88,7 @@ export const getPostBySearch = (searchQuery) => async(dispatch)=>{
     }
 }
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post,history) => async (dispatch) => {
 
     try {
         dispatch({type:actionTypes.START_LOADING})
@@ -70,6 +96,8 @@ export const createPost = (post) => async (dispatch) => {
         const { data } = await api.createPost(post);
 
         console.log("datat action file:", data);
+
+        history.push(`/posts/${data._id}`)
 
         dispatch({ type: actionTypes.CREATE, payload: data })
 

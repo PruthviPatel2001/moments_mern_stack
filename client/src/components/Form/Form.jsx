@@ -6,6 +6,7 @@ import FileBase from 'react-file-base64';
 
 import { useDispatch, useSelector } from 'react-redux'
 import { createPost, updatePost } from '../../actions/posts';
+import { useHistory } from 'react-router-dom';
 
 const NewTextField = withStyles({
     root: {
@@ -43,6 +44,7 @@ const Form = ({ currentId, setCurrentId,SetPopUp }) => {
 
     const classes = useStyles();
     const user = JSON.parse(localStorage.getItem('profile'))
+    const history = useHistory()
 
     const [postData, SetPostData] = useState({
         // creator: '',
@@ -68,7 +70,7 @@ const Form = ({ currentId, setCurrentId,SetPopUp }) => {
 
     const dispatch = useDispatch();
 
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
+    const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null)
 
 
     const handelSubmit = (e) => {
@@ -85,7 +87,8 @@ const Form = ({ currentId, setCurrentId,SetPopUp }) => {
 
         } else {
 
-            dispatch(createPost({...postData,name:user?.result?.name}))
+            dispatch(createPost({...postData,name:user?.result?.name},history))
+
         }
 
         clear();

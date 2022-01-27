@@ -6,6 +6,8 @@ export const actionTypes ={
 
     DELETE:'DELETE',
 
+    FETCH_POST:'FETCH_POST',
+
     FETCH_ALL:'FETCH_ALL',
 
     LIKE:'LIKE',
