@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     media: {
         borderRadius: '20px',
         objectFit: 'cover',
-        width: '100%',
+        width: '80%',
         maxHeight: '600px',
 
     },
@@ -40,10 +40,13 @@ const useStyles = makeStyles((theme) => ({
     section: {
         borderRadius: '20px',
         margin: '10px',
+        // marginLeft:'1rem',
         flex: 1,
+
+       
     },
     imageSection: {
-        marginLeft: '20px',
+        // marginLeft: '20px',
         [theme.breakpoints.down('sm')]: {
             marginLeft: 0,
         },
@@ -90,7 +93,7 @@ const PostDetails = () => {
         return (
             <Paper className="loader">
 
-                <CircularProgress size="5em" />
+                <CircularProgress size="3em" />
 
             </Paper>
         )
@@ -106,20 +109,22 @@ const PostDetails = () => {
 
     return (
         <>
-            <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
+            <Paper style={{marginTop:'1rem', padding: '20px', borderRadius: '15px'}} >
                 <div className={classes.card}>
+                    <div className={classes.imageSection}>
+                        <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
+                    </div>
                     <div className={classes.section}>
                         <Typography variant="h3" component="h2">{post.title}</Typography>
                         <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
                         <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
+                        <Typography gutterBottom variant="body1" component="p">{post.likes.length > 1 ? `${post.likes.length} likes`:`${post.likes.length} like`}  </Typography>
+
                         <Typography variant="h6">Created by: {post.name}</Typography>
                         <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
                         <Divider style={{ margin: '20px 0' }} />
                         <CommentSection post={post} />
                             <Divider style={{ margin: '20px 0' }} />
-                    </div>
-                    <div className={classes.imageSection}>
-                        <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
                     </div>
                 </div>
 
@@ -139,7 +144,7 @@ const PostDetails = () => {
                                     const { title, message, name, creator, likes, selectedFile, _id, createdAt } = post
 
                                     return (
-                                        <Grid item className="post-grid" lg={4} md={6} xs={12} sm={12} key={_id}>
+                                        <Grid item style={{marginTop:'1rem'}} lg={3} md={4} xs={12} sm={12} key={_id}>
 
                                             <Card className="card-body">
 
@@ -175,11 +180,11 @@ const PostDetails = () => {
 
                                                 {/* </ButtonBase> */}
 
-                                                <CardActions disableSpacing>
+                                                <CardActions disableSpacing style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
 
 
                                                     <IconButton >
-                                                        <FavoriteIcon />
+                                                        <FavoriteIcon /> {likes.length}
                                                     </IconButton>
 
                                                     <IconButton onClick={() => openPost(_id)}>

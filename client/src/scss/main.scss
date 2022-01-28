@@ -9,7 +9,7 @@
 
 html {
 }
-.loader{
+.loader {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,17 +18,16 @@ html {
 }
 
 // Authentication
-.authenticate-container{
-
+.authenticate-container {
     margin-top: 2rem;
     padding: 1rem 2rem;
     min-height: 20rem;
 
-    .header{
+    .header {
         margin-bottom: 1rem;
     }
 
-    .actions{
+    .actions {
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -36,17 +35,16 @@ html {
 
         padding: 0rem 0.4rem;
 
-        .btn{
-
+        .btn {
             background-color: $Blue;
-            color: $White
+            color: $White;
         }
-        .g-btn{
+        .g-btn {
             background-color: rgb(248, 91, 91);
             color: $White;
         }
     }
-    .bottom-text{
+    .bottom-text {
         margin-top: 1rem;
         display: flex;
         justify-content: center;
@@ -148,17 +146,20 @@ html {
     margin: 0 0.8rem;
 
     .side-box {
-        margin-top: 0.4rem;
-        padding: 0.8rem;
+        // margin-top: 0.4rem;
+        padding: 0.4rem;
         // border: 1px solid red;
 
         .paper {
+            min-height: 17rem !important;
             padding: 0.8rem;
+            box-shadow: 0px 1px 15px 5px rgba(0, 0, 0, 0.1) !important;
+            border-radius: 10px !important ;
 
             .btn-box {
                 display: flex;
                 justify-content: space-evenly;
-                margin-top: 1rem;
+                margin-top: 2rem;
 
                 .btn-1 {
                     background-color: $Blue;
@@ -176,11 +177,7 @@ html {
 }
 
 .post-box-grid {
-    // border: 1px solid red;
     display: flex;
-    // justify-content: space-between;
-    // flex-wrap: wrap;
-
     .post-grid {
         // border: 1px solid yellow;
         display: flex;
@@ -191,14 +188,17 @@ html {
         .post-card {
             // border: 1px solid yellow;
             width: 20rem;
+
             // max-height: 40rem;
             margin-top: 1rem;
         }
 
         .card-body {
             height: 27rem;
+            box-shadow: 0px 1px 15px 5px rgba(0, 0, 0, 0.1) !important;
+            border-radius: 10px !important;
 
-            .card-actions{
+            .card-actions {
                 display: flex;
                 justify-content: space-between;
             }
@@ -247,17 +247,23 @@ html {
     display: flex;
     justify-content: space-between;
 
+    h6{
+        margin-left: 2rem;
+    }
+
     .comments-inner-container {
         height: 200px;
         width: 25rem;
         overflow-y: auto;
-        margin-right: 2rem;
-        // border: 1px solid red;
-        // height: 10rem;
-
+        margin-left: 2rem;
+        border: 1px solid rgba(0, 0, 0, 0.205);
+        padding: 0.4rem;
         overflow-wrap: break-word;
         word-wrap: break-word;
         hyphens: auto;
+        box-shadow: 0px 1px 15px -5px rgba(0, 0, 0, 0.1) !important;
+
+
     }
 
     .btn {
@@ -265,6 +271,12 @@ html {
         color: $White;
     }
 }
+
+// recommended 
+.recommended-section{
+    margin-top: 1rem;
+}
+
 
 /// Responsive ///
 

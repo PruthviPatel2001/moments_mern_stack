@@ -29,42 +29,19 @@ const CommentSection = ({ post }) => {
 
     }
 
-    
+
 
     return (
         <>
 
             <div className="comment-container">
 
-                <div>
-
-                    <Typography gutterBottom variant="h6">Commnets</Typography>
-                    <div className="comments-inner-container">
-
-
-                        {comments.map((c, i) => {
-
-                            return (
-                                <Typography className='ow'>
-                                    <strong>{c.split(': ')[0]}</strong>
-                                    {c.split(':')[1]}
-                                </Typography>
-
-                            )
-                                
-
-                        })}
-
-                        <div ref={commentsRef} />
-                    </div>
-                </div>
-
 
                 {user?.result?.name && (
 
                     <div style={{ width: '20rem' }}>
 
-                        <Typography gutterBottom variant="h6" >
+                        <Typography gutterBottom variant="h6" align='center' >
 
                             Write a Comment
 
@@ -90,6 +67,33 @@ const CommentSection = ({ post }) => {
                     </div>
 
                 )}
+
+
+                <div>
+
+                    <Typography gutterBottom variant="h6">Commnets</Typography>
+                    <div className="comments-inner-container">
+
+
+                        {comments.map((c, i) => {
+
+                            return (
+                                <Typography className='ow'>
+                                    <strong>{c.split(': ')[0]}</strong>
+                                    {c.split(':')[1]}
+                                </Typography>
+
+                            )
+
+
+                        })}
+
+                    </div>
+                        <div ref={commentsRef} />
+                </div>
+
+
+             
 
 
             </div>

@@ -127,7 +127,7 @@ const Home = ({ OpenPopUp, SetPopUp }) => {
                                 name="tags"
                                 placeholder="add Tags"
                                 label="Tags"
-                                style={{ marginTop: '1rem' }}
+                                style={{ marginTop: '2rem' }}
                             />
 
                             <div className="btn-box">
