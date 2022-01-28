@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, ButtonBase } from '@material-ui/core';
 
@@ -36,6 +36,10 @@ const Post = ({ post, setCurrentId, SetPopUp, setUpdatePopupText }) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    const [likes, setlikes] = useState(post?.likes);
+
+    console.log(likes);
+
 
     const upDateData = () => {
 
@@ -58,17 +62,53 @@ const Post = ({ post, setCurrentId, SetPopUp, setUpdatePopupText }) => {
 
     const user = JSON.parse(localStorage.getItem('profile'));
 
-    const Likes = () => {
-        if (post.likes.length > 0) {
-            return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
-                ? (
-                    <><FavoriteIcon color="secondary" fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}</>
-                ) : (
-                    <><FavoriteIcon variant="outlined" fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
-                );
+    const userId = user?.result.googleId || user?.result?._id
+
+    const haslikedPost =  post.likes.find((like) => like === (userId))
+    
+    
+    const handleLike = async () => {
+        
+        dispatch(likePost(post._id))
+
+        if(haslikedPost){
+
+            setlikes(post.likes.filter((id)=> id !== (userId)))
+            // if he like the post and click on it again we filter his id out
+            // and return only other user likes
+
+        } else{
+
+            setlikes([...post.likes,userId])
+
         }
 
-        return <><FavoriteIcon variant="outlined" fontSize="small" />&nbsp;Like</>;
+        
+    };
+    
+    const Likes = () => {
+
+        if (likes.length > 0) {
+
+            return likes.find((like) => like === (userId)) // Check if user with id like post before if yus and he click again it get dislike 
+               
+            ? (
+               
+                <>
+                 <FavoriteIcon color="secondary" fontSize="small" />  <Typography  variant='body2' component='p'>  &nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}`} </Typography> 
+                </>
+                
+            ) 
+            
+            :
+             (
+                <>
+                  <FavoriteIcon variant="outlined" fontSize="small" /> <Typography  variant='body2' component='p'> &nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'} </Typography> 
+                </>
+             );
+        } 
+
+        return <><FavoriteIcon variant="outlined" fontSize="small" /> <Typography  variant='body2' component='p'> &nbsp;Like </Typography> </>;
     };
 
     const openPost = () =>{
@@ -132,10 +172,10 @@ const Post = ({ post, setCurrentId, SetPopUp, setUpdatePopupText }) => {
 
             {/* </ButtonBase> */}
 
-                <CardActions disableSpacing>
+                <CardActions className="card-actions" disableSpacing>
 
 
-                    <IconButton disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
+                    <IconButton disabled={!user?.result} onClick={handleLike}>
                         <Likes />
                     </IconButton>
 

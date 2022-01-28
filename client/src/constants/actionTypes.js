@@ -20,6 +20,8 @@ export const actionTypes ={
 
     START_LOADING:'START_LOADING',
 
-    END_LOADING:'END_LOADING'
+    END_LOADING:'END_LOADING',
+    
+    COMMENT:'COMMENT',
     
 } 

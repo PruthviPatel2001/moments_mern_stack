@@ -5,6 +5,65 @@
   padding: 0;
 }
 
+.loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80vh;
+  width: 100%;
+}
+
+.authenticate-container {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  min-height: 20rem;
+}
+
+.authenticate-container .header {
+  margin-bottom: 1rem;
+}
+
+.authenticate-container .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  padding: 0rem 0.4rem;
+}
+
+.authenticate-container .actions .btn {
+  background-color: #6886C5;
+  color: #F9F9F9;
+}
+
+.authenticate-container .actions .g-btn {
+  background-color: #f85b5b;
+  color: #F9F9F9;
+}
+
+.authenticate-container .bottom-text {
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
 .header-bar {
   background-color: #6886C5 !important;
   -webkit-box-shadow: 0px 4px 14px -3px #d8d3cd;
@@ -160,12 +219,21 @@
 }
 
 .post-box-grid .post-grid .post-card {
-  width: 18rem;
+  width: 20rem;
   margin-top: 1rem;
 }
 
 .post-box-grid .post-grid .card-body {
-  height: 25rem;
+  height: 27rem;
+}
+
+.post-box-grid .post-grid .card-body .card-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .post-box-grid .post-grid .card-Header {
@@ -199,6 +267,32 @@
 
 .post-box-grid .post-grid .card-content {
   border-top: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.comment-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.comment-container .comments-inner-container {
+  height: 200px;
+  width: 25rem;
+  overflow-y: auto;
+  margin-right: 2rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+}
+
+.comment-container .btn {
+  background-color: #6886C5;
+  color: #F9F9F9;
 }
 
 @media screen and (min-width: 786px) and (max-width: 1024px) {

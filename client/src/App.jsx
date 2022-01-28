@@ -91,14 +91,15 @@ const App = () => {
 
             <Switch>
 
-                <Route exact path="/auth">
-
-                   {!user ? <Auth /> : <Redirect to='/posts'/>} 
-
-                </Route>
 
                 <Route exact path='/' component={() => <Redirect to="/posts" />} />
-                {/* <NavBar /> */}
+                
+                <Route exact path="/auth">
+
+                   {!user ? <Auth /> : <Redirect to='/posts' />} 
+
+                </Route>
+                
 
                 <Route exact path='/posts'>
 

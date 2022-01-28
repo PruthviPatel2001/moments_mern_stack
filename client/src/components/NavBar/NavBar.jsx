@@ -107,11 +107,11 @@ const NavBar = () => {
 
                     </div> : (
 
-                        <NavLink to='/auth'>
+                        <Link to='/auth'>
 
                             <Button color="inherit">Login</Button>
 
-                        </NavLink>
+                        </Link>
 
                     )
                 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { Paper, Typography, CircularProgress, Divider, Grid,Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton } from '@material-ui/core'
+import { Paper, Typography, CircularProgress, Divider, Grid, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton } from '@material-ui/core'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
@@ -12,6 +12,7 @@ import moment from 'moment'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { getSinglePost, getPostBySearch, getPosts } from '../../actions/posts';
+import CommentSection from './CommentSection';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -87,9 +88,9 @@ const PostDetails = () => {
 
     if (isLoading) {
         return (
-            <Paper style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <Paper className="loader">
 
-                <CircularProgress size="7em" />
+                <CircularProgress size="5em" />
 
             </Paper>
         )
@@ -114,10 +115,8 @@ const PostDetails = () => {
                         <Typography variant="h6">Created by: {post.name}</Typography>
                         <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
                         <Divider style={{ margin: '20px 0' }} />
-                        <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
-                        <Divider style={{ margin: '20px 0' }} />
-                        <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
-                        <Divider style={{ margin: '20px 0' }} />
+                        <CommentSection post={post} />
+                            <Divider style={{ margin: '20px 0' }} />
                     </div>
                     <div className={classes.imageSection}>
                         <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
@@ -138,8 +137,7 @@ const PostDetails = () => {
                                 {recommendedPosts.map((post) => {
 
                                     const { title, message, name, creator, likes, selectedFile, _id, createdAt } = post
- 
-                                      console.log("post",post)
+
                                     return (
                                         <Grid item className="post-grid" lg={4} md={6} xs={12} sm={12} key={_id}>
 
@@ -181,7 +179,7 @@ const PostDetails = () => {
 
 
                                                     <IconButton >
-                                                        <FavoriteIcon /> 
+                                                        <FavoriteIcon />
                                                     </IconButton>
 
                                                     <IconButton onClick={() => openPost(_id)}>

@@ -100,15 +100,13 @@ const SignUp = () => {
     return (
         <Container component="main" maxWidth="xs">
 
-            <Paper elevation={3}>
+            <Paper elevation={3} className="authenticate-container" >
 
-                <Avatar>
-                    p
-                </Avatar>
+              
 
 
 
-                <Typography variant='h5'>
+                <Typography variant='h5' className="header" align='center'>
                     {isSignup ? 'Sign up' : 'Sign in'}
                 </Typography>
 
@@ -135,7 +133,10 @@ const SignUp = () => {
 
                         {isSignup && <Input name='confirmPassword' label="Confirm password" handelChange={handelChange} type='password' />}
 
-                        <Button type="submit" fullwidth variant="contained">
+                      
+                      <div className="actions">
+
+                        <Button type="submit" className="btn"  variant="contained">
 
                             {isSignup ? 'Sign Up' : 'Sign in'}
 
@@ -146,8 +147,8 @@ const SignUp = () => {
                             clientId='243299781491-eu56idd2i60dl1h5llse1vvnmvvv5ot0.apps.googleusercontent.com'
                             render={(renderProps) => (
                                 <Button
-                                    className='' color='primary'
-                                    fullwidth onClick={renderProps.onClick}
+                                    className='g-btn' 
+                                    onClick={renderProps.onClick}
                                     disabled={renderProps.disabled} startIcon=''
                                     variant="contained"
 
@@ -163,17 +164,18 @@ const SignUp = () => {
 
                         />
 
+                      </div>
+                      
 
+                        <div container className="bottom-text">
 
-                        <Grid container justifyContent="flex-end">
-
-                            <Button onClick={switchMode}>
+                            <Button  onClick={switchMode} >
 
                                 {isSignup ? 'Already have account ? Sign In' : ' don"t have account ? Sign Up'}
 
                             </Button>
 
-                        </Grid>
+                        </div>
 
                     </Grid>
 

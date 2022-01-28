@@ -9,8 +9,53 @@
 
 html {
 }
-// App Bar component
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+}
 
+// Authentication
+.authenticate-container{
+
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    min-height: 20rem;
+
+    .header{
+        margin-bottom: 1rem;
+    }
+
+    .actions{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        // border: 1px solid red;
+
+        padding: 0rem 0.4rem;
+
+        .btn{
+
+            background-color: $Blue;
+            color: $White
+        }
+        .g-btn{
+            background-color: rgb(248, 91, 91);
+            color: $White;
+        }
+    }
+    .bottom-text{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+// App Bar component
 .header-bar {
     background-color: $Blue !important ;
     box-shadow: 0px 4px 14px -3px #d8d3cd;
@@ -97,34 +142,31 @@ html {
 
 // Post Component
 
-.post-container{
+.post-container {
     min-height: 140vh;
     padding: 0 1rem;
     margin: 0 0.8rem;
 
-
-    .side-box{
+    .side-box {
         margin-top: 0.4rem;
         padding: 0.8rem;
-    // border: 1px solid red;
+        // border: 1px solid red;
 
-
-        .paper{
+        .paper {
             padding: 0.8rem;
 
-            .btn-box{
+            .btn-box {
                 display: flex;
                 justify-content: space-evenly;
                 margin-top: 1rem;
-                
-                .btn-1{
+
+                .btn-1 {
                     background-color: $Blue;
                 }
-                .btn-2{
+                .btn-2 {
                     background-color: $Pink;
                 }
             }
-
         }
     }
 }
@@ -133,8 +175,7 @@ html {
     margin-top: 1.5rem !important;
 }
 
-.post-box-grid{
-    
+.post-box-grid {
     // border: 1px solid red;
     display: flex;
     // justify-content: space-between;
@@ -146,27 +187,32 @@ html {
         justify-content: center;
         padding: 0 !important;
         // flex-wrap: wrap;
-    
+
         .post-card {
             // border: 1px solid yellow;
-            width: 18rem;
+            width: 20rem;
             // max-height: 40rem;
             margin-top: 1rem;
         }
-        
+
         .card-body {
-            height: 25rem;
+            height: 27rem;
+
+            .card-actions{
+                display: flex;
+                justify-content: space-between;
+            }
         }
-    
+
         .card-Header {
             background-color: $Blue;
-    
+
             color: $White;
             .icon {
                 color: $Pink;
             }
         }
-    
+
         .szh-menu-button {
             background-color: transparent !important;
             box-shadow: none !important;
@@ -175,12 +221,12 @@ html {
         .szh-menu {
             color: black;
             // padding: 0.4rem 0.8rem;
-    
+
             .szh-menu__item {
                 // border: 1px solid red;
                 padding: 0.4rem 1rem !important;
                 font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
-    
+
                 &:hover {
                     background-color: none !important;
                 }
@@ -189,12 +235,36 @@ html {
         .card-content {
             // background-color: $Pink;
             border-top: 1px solid rgba(0, 0, 0, 0.226);
-    
+
             // color: $White ;
         }
     }
 }
 
+// comments
+
+.comment-container {
+    display: flex;
+    justify-content: space-between;
+
+    .comments-inner-container {
+        height: 200px;
+        width: 25rem;
+        overflow-y: auto;
+        margin-right: 2rem;
+        // border: 1px solid red;
+        // height: 10rem;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+
+    .btn {
+        background-color: $Blue;
+        color: $White;
+    }
+}
 
 /// Responsive ///
 
@@ -215,7 +285,6 @@ html {
 }
 
 @media screen and (min-width: 320px) and (max-width: 785px) {
-
     .card-body {
         margin-top: 1rem;
     }
