@@ -166,7 +166,7 @@
 }
 
 .post-container {
-  min-height: 140vh;
+  min-height: 150vh;
   padding: 0 1rem;
   margin: 0 0.8rem;
 }
@@ -227,7 +227,7 @@
 }
 
 .post-box-grid .post-grid .card-body {
-  height: 27rem;
+  height: 26rem;
   -webkit-box-shadow: 0px 1px 15px 5px rgba(0, 0, 0, 0.1) !important;
           box-shadow: 0px 1px 15px 5px rgba(0, 0, 0, 0.1) !important;
   border-radius: 10px !important;
@@ -240,6 +240,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding-bottom: 1rem;
 }
 
 .post-box-grid .post-grid .card-Header {
