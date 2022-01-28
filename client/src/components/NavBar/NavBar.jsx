@@ -87,13 +87,13 @@ const NavBar = () => {
                         </Avatar>
 
                         <div className="item">
-                            <Typography variant='body2' component="p">
+                            <Typography variant='body2' component="p" style={{marginRight:'1rem'}}>
                                 {user.result.name}
                             </Typography>
 
                         </div>
                         <div className="item">
-                            <Button variant='outlined' onClick={logout}>
+                            <Button variant='outlined' size='small' onClick={logout} style={{color:'white',border:'1px solid white'}}>
                                 Logout
                             </Button>
 
