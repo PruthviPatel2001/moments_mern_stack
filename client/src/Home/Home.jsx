@@ -1,18 +1,14 @@
+import { AppBar, Button, Container, Grid, Paper, TextField, Typography } from '@material-ui/core'
 import { React, useEffect, useState } from 'react'
-
-import { Container, Button, AppBar, TextField, Typography, Grid, Paper } from '@material-ui/core'
+import { getPostBySearch, getPosts } from '../actions/posts'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import DialogBox from '../components/DialogBox/DialogBox'
-import TagsInput from '../components/TagsInput/TagsInput'
 import Form from '../components/Form/Form'
-import Posts from '../components/Posts/Posts'
 import Paginate from '../components/Pagination'
-
+import Posts from '../components/Posts/Posts'
+import TagsInput from '../components/TagsInput/TagsInput'
 import { useDispatch } from 'react-redux';
-import { getPosts, getPostBySearch } from '../actions/posts'
-
-
 
 function useQuery() {
     return new URLSearchParams(useLocation().search)
@@ -31,18 +27,17 @@ const Home = ({ OpenPopUp, SetPopUp }) => {
     const page = query.get('page') || 1;
 
     const searchQuery = query.get('searchQuery')
+    const tagQuery = query.get('tags')
+
 
     const [search, setsearch] = useState('');
     const [tags, settags] = useState([]);
 
-    // const [OpenPopUp, SetPopUp] = useState(false)
 
     const [UpdatePopupText, setUpdatePopupText] = useState(false);
 
     const handleSelecetedTags = (items) => {
-        // console.log(items);
         settags(items)
-        // console.log('tags', tags);
     }
 
     const handelKeyPress = (e) => {
@@ -52,12 +47,19 @@ const Home = ({ OpenPopUp, SetPopUp }) => {
         }
     }
 
-    // useEffect(() => {
+  useEffect(() => {
 
-    //     dispatch(getPosts());
+      
+      if(searchQuery ||tagQuery ){
+        let search = searchQuery
+        let tags = tagQuery
+        
+        dispatch(getPostBySearch({ search, tags: tags }))
+    }
+    
 
-    // }, [currentId, dispatch])
-
+  }, [dispatch,searchQuery,tagQuery]);
+  
 
     const searchPost = () => {
 
@@ -76,7 +78,6 @@ const Home = ({ OpenPopUp, SetPopUp }) => {
         <>
 
             <div className='post-container'>
-                {/* style={{ border: '1px solid red' }} */}
 
 
                 <DialogBox
@@ -101,8 +102,6 @@ const Home = ({ OpenPopUp, SetPopUp }) => {
                     </Grid>
 
 
-
-
                     <Grid item lg={3} md={3} className='side-box' >
 
                         <Paper className='paper' elevation={6} >
@@ -114,8 +113,6 @@ const Home = ({ OpenPopUp, SetPopUp }) => {
                                 value={search} onChange={(e) => setsearch(e.target.value)}
                                 onKeyPress={handelKeyPress}
                             />
-
-
 
 
                             <TagsInput

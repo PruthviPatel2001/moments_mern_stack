@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { Link, NavLink,useLocation,useHistory } from 'react-router-dom'
-import decode from 'jwt-decode'
-import { useStyles } from '../../App';
-import { Button, AppBar, Toolbar, Typography, Avatar } from '@material-ui/core'
+import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core'
+import { Link, NavLink, useHistory, useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 
+import decode from 'jwt-decode'
 import {useDispatch} from 'react-redux'
+import { useStyles } from '../../App';
 
 const NavBar = () => {
     const classes = useStyles();
@@ -16,11 +16,6 @@ const NavBar = () => {
     const dispatch= useDispatch()
     const history = useHistory()
     const location = useLocation() 
-
-    // console.log("from nav bar", user);
-
-    
-
 
     const logout = () =>{
          dispatch({type:'LOGOUT'})
@@ -35,14 +30,7 @@ const NavBar = () => {
 
         const token = user?.token;
 
-        // if(token){
-        //     const decodedToken = decode(token)
-
-        //     if(decodedToken.exp*1000 < new Date.getTime()){
-        //         logout()
-        //     }
-        // }
-
+    
         if (token) {
             const decodedToken = decode(token);
       

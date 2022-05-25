@@ -76,13 +76,7 @@ const App = () => {
     const user = JSON.parse(localStorage.getItem('profile'));
 
 
-    // useEffect(() => {
-
-    //     dispatch(getPosts());
-
-    // }, [currentId, dispatch])
     
-
     return (
         <>
 

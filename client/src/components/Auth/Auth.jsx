@@ -1,16 +1,11 @@
-import React, { useState } from 'react'
-
-import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core'
+import { Avatar, Button, Container, Grid, Paper, Typography } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
+import {signin, signup} from '../../actions/auth'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { GoogleLogin } from 'react-google-login'
-
-import { useDispatch } from 'react-redux'
-
-import { useHistory } from 'react-router-dom'
-
-import {signin,signup} from '../../actions/auth'
-
 import Input from './Input'
+import { useHistory } from 'react-router-dom'
 
 const initialState = {
     firstName: '',
@@ -29,16 +24,14 @@ const SignUp = () => {
     const [formData, setformData] = useState(initialState);
     const history = useHistory()
 
-
-
-
-
+    const err = useSelector((state) => state.authReducer.authData);
+ 
     const dispatch = useDispatch()
 
 
     const handelSubmit = (e) => {
         e.preventDefault()
-        console.log(formData);
+        // console.log(formData);
 
         if (isSignup) {
             dispatch(signup(formData, history))
@@ -48,6 +41,8 @@ const SignUp = () => {
         }
 
     }
+
+
 
     const handelChange = (e) => {
 
@@ -70,9 +65,8 @@ const SignUp = () => {
 
     const googleSuccess = async (res) => {
 
-        console.log("google sign in successfull ");
+        // console.log("google sign in successfull ");
 
-        console.log(res);
 
         const result = res?.profileObj
         const token = res?.tokenId;
@@ -94,9 +88,9 @@ const SignUp = () => {
     }
 
     const googleFailure = () => {
-        console.log("google sign in unsuccessfull . try again");
+        // console.log("google sign in unsuccessfull . try again");
     }
-
+  
     return (
         <Container component="main" maxWidth="xs">
 
@@ -141,6 +135,7 @@ const SignUp = () => {
                             {isSignup ? 'Sign Up' : 'Sign in'}
 
                         </Button>
+                        {/* {err && <h1 style={{ color: "red" }}>{err}</h1>} */}
 
                         <GoogleLogin
 

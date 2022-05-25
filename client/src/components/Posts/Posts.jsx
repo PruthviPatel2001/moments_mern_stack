@@ -1,23 +1,20 @@
-import React from 'react'
-
-import Post from './Post/Post'
-
 import { CircularProgress, Grid, Typography } from '@material-ui/core'
 
+import Post from './Post/Post'
+import React from 'react'
 import { useSelector } from 'react-redux'
 
 const Posts = ({ setCurrentId, SetPopUp, setUpdatePopupText }) => {
 
     const { posts, isLoading } = useSelector((state) => state.posts) // []=>{posts:[]}
 
-    // console.log("from here Posts.jsx:", posts);
 
     if (!posts.length && !isLoading) {
 
         return (
 
             <div className='loader'>
-                <Typography variant="h3" component='h3'>
+                <Typography variant="h5" component='5'>
                     No Post available!!
                 </Typography>
             </div>

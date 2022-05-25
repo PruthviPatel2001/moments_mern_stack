@@ -1,19 +1,17 @@
-import React,{useState} from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, ButtonBase } from '@material-ui/core';
-
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
-import { useHistory } from 'react-router-dom';
-
-import { Menu, MenuItem, MenuButton, SubMenu } from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/core.css';
 
-import { useDispatch } from 'react-redux';
+import { Avatar, ButtonBase, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@material-ui/core';
+import { Menu, MenuButton, MenuItem, SubMenu } from '@szhsin/react-menu';
+import React,{useState} from 'react'
 import { deletePost, likePost } from '../../../actions/posts';
 
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { makeStyles } from '@material-ui/core/styles';
 import moment from 'moment'
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,12 +36,11 @@ const Post = ({ post, setCurrentId, SetPopUp, setUpdatePopupText }) => {
 
     const [likes, setlikes] = useState(post?.likes);
 
-    console.log(likes);
+    // console.log(likes);
 
 
     const upDateData = () => {
 
-        console.log("on click of update button:", post._id);
 
         setCurrentId(post._id)
 
@@ -51,14 +48,8 @@ const Post = ({ post, setCurrentId, SetPopUp, setUpdatePopupText }) => {
         setUpdatePopupText(true)
 
 
-        // console.log("hello post");
     }
 
-    // const Namefirst2 = post.creator.split(' ').slice(0, 2).join(' ');
-    // const firstLetters = post.creator
-    // .split(' ')
-    // .map(word => word[0])
-    // .join('');
 
     const user = JSON.parse(localStorage.getItem('profile'));
 

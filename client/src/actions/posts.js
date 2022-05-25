@@ -1,4 +1,5 @@
 import * as api from '../api' // importing everytihing from api
+
 import { actionTypes } from '../constants/actionTypes';
 
 // Actions Creators
@@ -12,7 +13,6 @@ export const getSinglePost = (id) => async (dispatch) => {
 
         const { data} = await api.fetchPost(id);
 
-        console.log(data);
 
         dispatch({
             type: actionTypes.FETCH_POST,
@@ -43,7 +43,6 @@ export const getPosts = (page) => async (dispatch) => { // for redux-think (asyn
         //     payload:[]
         // }
 
-        console.log(data);
 
         dispatch({
             type: actionTypes.FETCH_ALL,
@@ -69,7 +68,6 @@ export const getPostBySearch = (searchQuery) => async(dispatch)=>{
 
         const { data:{data} }= await api.fetchPostBySearch(searchQuery);
 
-        console.log(data);
 
         dispatch({
             type: actionTypes.FETCH_BY_SEARCH,
@@ -95,7 +93,6 @@ export const createPost = (post,history) => async (dispatch) => {
 
         const { data } = await api.createPost(post);
 
-        console.log("datat action file:", data);
 
         history.push(`/posts/${data._id}`)
 
@@ -116,7 +113,6 @@ export const updatePost = (id, post) => async (dispatch) => {
 
     try {
 
-        console.log("post id (action file):", id,post);
         const { data } = await api.updatePost(id, post);
 
 
@@ -167,7 +163,7 @@ export const commentPost = (value,id)=> async(dispatch)=>{
         
        const {data} = await api.comment(value,id)
 
-       console.log(data); // {comments : ['comment','comment2']}
+    //    console.log(data); // {comments : ['comment','comment2']}
 
 
        dispatch({type:actionTypes.COMMENT, payload:data})

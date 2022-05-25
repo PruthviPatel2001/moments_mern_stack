@@ -1,6 +1,5 @@
 import { actionTypes } from '../constants/actionTypes';
 
-
 const authReducer = (state = { authData: null }, action) => {
     switch (action.type) {
 
@@ -9,8 +8,6 @@ const authReducer = (state = { authData: null }, action) => {
             localStorage.setItem('profile', JSON.stringify( { ...action?.data } )  )
 
 
-            console.log("from reducer: ", action?.data);
-
             return { ...state, authData: action?.data };
         
         case actionTypes.LOGOUT:
@@ -18,6 +15,11 @@ const authReducer = (state = { authData: null }, action) => {
              localStorage.clear()
 
             return { ...state, authData:null };
+
+        case "ERROR":
+
+            console.log(action?.data)
+            return { ...state, authData:action?.data };
 
         default:
             return state;

@@ -2,7 +2,9 @@ import axios from 'axios';
 
 // const url = "http://localhost:8000/posts";
 
-const API = axios.create({ baseURL:'http://localhost:8000'})
+// const API = axios.create({ baseURL:'http://localhost:8000'})
+const API = axios.create({ baseURL:'https://moments-web-api.herokuapp.com'})
+
 
 API.interceptors.request.use((req)=>{
 

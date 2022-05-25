@@ -1,19 +1,16 @@
 // import PostMessage from "../models/postMessage.js"
 
-
-import mongoose from 'mongoose';
 import PostMessage from '../models/postMessage.js'
+import mongoose from 'mongoose';
 
 // const PostMessage = require('../models/postMessage.js')
 
 export const getSinglePost = async (req,res) =>{
 
     const {id} = req.params;
-    console.log("form backed:",id);
 
     try {
         const post = await PostMessage.findById(id)
-        // console.log(post);
         res.status(200).json(post)
         
     } catch (error) {
@@ -35,7 +32,6 @@ export const getPosts = async (req, res) => {
         
         const posts = await PostMessage.find().sort({_id:-1}).limit(LIMIT).skip(startIndex)
 
-        // console.log(postMessage);
 
         res.json({data:posts,currentPage: Number(page),numberOfPages: Math.ceil(total/LIMIT)});
 
@@ -53,7 +49,6 @@ export const getPostsBySearch = async (req, res) => {
 
     const {searchQuery,tags}= req.query
 
-    console.log("in get post by search method method, ",tags,searchQuery);
 
     try {
         const title = new RegExp(searchQuery, 'i'); // TEST,Test,test all would count same using regexp
@@ -75,9 +70,7 @@ export const createPost = async (req, res) => {
 
     const post = req.body;
 
-    console.log("in Post js", post);
 
-    // const newPost = new PostMessage(post)
     const newPost = new PostMessage({...post , creator:req.userId , createdAt:new Date().toISOString()})
 
     try {
@@ -97,7 +90,6 @@ export const updatePost = async (req, res) => {
 
     const { id } = req.params;
 
-    console.log("feom server update post",id);
 
     const post = req.body;
 

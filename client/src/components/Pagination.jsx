@@ -1,11 +1,10 @@
-import React,{useEffect} from 'react';
 import { Pagination, PaginationItem } from '@material-ui/lab'
-import { makeStyles } from '@material-ui/core/styles';
+import React,{useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux'
+
 import {Link} from 'react-router-dom'
-
-import {useDispatch,useSelector} from 'react-redux'
-
 import { getPosts } from '../actions/posts';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -31,7 +30,6 @@ const Paginate = ({page}) => {
 
         if(page) {
 
-            console.log('from pagination',page);
 
             dispatch(getPosts(page));
         }

@@ -1,16 +1,12 @@
-import { actionTypes } from '../constants/actionTypes';
 import * as api from '../api' // importing everytihing from api
 
+import { actionTypes } from '../constants/actionTypes';
 
 export const signin = (formData,history) => async(dispatch)=> {
 
    try {
     
     const {data} = await api.signIn(formData);
-    const response = await api.signIn(formData);
-
-
-    console.log("auth.js in action folder here:",response);
 
     dispatch({type:actionTypes.AUTH,data})
 
@@ -18,6 +14,13 @@ export const signin = (formData,history) => async(dispatch)=> {
 
    } catch (error) {
        console.log(error);
+       
+       const errMsg =
+       error.response && error.response.data.message
+         ? error.response.data.message
+         : error.message;
+
+        dispatch({type:"ERROR",data:errMsg})
    }
 
 }
@@ -27,11 +30,8 @@ export const signup = (formData,history) => async(dispatch)=> {
 
     try {
      
-     // const {data} 
-     console.log("make it till here");
      const {data} = await api.signUp(formData);
 
-    console.log("auth.js in action folder:",data);
 
     dispatch({type:actionTypes.AUTH,data})
  

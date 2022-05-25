@@ -7,7 +7,7 @@ const auth = async (req,res,next)=>{
         // console.log(req.headers);
         const token = req.headers.authorization.split(" ")[1];
 
-        const isCustomAuth = token.length < 500; // if len id lower than 500 its our own token or its a google token
+        const isCustomAuth = token.length < 500; // if len id lower than 500 its our own token else its a google token
 
         let decodedData;
 
