@@ -22,7 +22,6 @@ app.get("/", (req, res) => {
   res.send("hello moments api");
 });
 
-// const CONNECTION_URL= "mongodb+srv://pruthvi:pruthvi@cluster0.eq1o9.mongodb.net/myFirstDatabase"
 const PORT = process.env.PORT || 8000;
 
 mongoose
