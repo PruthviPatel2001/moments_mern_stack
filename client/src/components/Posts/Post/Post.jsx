@@ -36,7 +36,6 @@ const Post = ({ post, setCurrentId, SetPopUp, setUpdatePopupText }) => {
 
     const [likes, setlikes] = useState(post?.likes);
 
-    // console.log(likes);
 
 
     const upDateData = () => {
@@ -130,7 +129,6 @@ const Post = ({ post, setCurrentId, SetPopUp, setUpdatePopupText }) => {
                                     <MoreVertIcon className="icon" />
                                 </IconButton>
                             </MenuButton>}>
-                            {/* <MenuItem onClick={()=>setCurrentId(post._id)}>Update</MenuItem> */}
                             <MenuItem onClick={upDateData}>Update</MenuItem>
 
                             <MenuItem onClick={() => dispatch(deletePost(post._id))}>Delete</MenuItem>

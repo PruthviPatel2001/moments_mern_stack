@@ -55,7 +55,6 @@ export const getPostsBySearch = async (req, res) => {
 
         const posts = await PostMessage.find({ $or:[ {title} , { tags: { $in: tags.split(',') } } ] } )
        
-        console.log(posts.length);
 
         res.json({data:posts})
         

@@ -113,10 +113,15 @@ export const updatePost = (id, post) => async (dispatch) => {
 
     try {
 
+        dispatch({type:actionTypes.START_LOADING})
+
+
         const { data } = await api.updatePost(id, post);
 
 
         dispatch({ type: actionTypes.UPDATE, payload: data })
+
+        dispatch({type:actionTypes.END_LOADING})
 
 
     } catch (error) {

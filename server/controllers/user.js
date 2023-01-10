@@ -1,8 +1,6 @@
+import User from '../models/user.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-
-import User from '../models/user.js'
-
 
 export const signin = async (req,res) =>{
 
@@ -14,7 +12,7 @@ export const signin = async (req,res) =>{
 
         if(!existingUser){
 
-            return res.status(404).json({message:"user not exiist"})
+            return res.status(404).json({message:"user not exist"})
         }
 
         const isPasswordCorrect = await bcrypt.compare(password,existingUser.password)

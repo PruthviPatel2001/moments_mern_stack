@@ -125,6 +125,7 @@ const SignUp = () => {
                         <Input name='email' label="Email-Id" handelChange={handelChange} type="email" />
                         <Input name='password' label="Password" handelChange={handelChange} type={showPassword ? 'text' : 'password'} handelShowPassword={handelShowPassword} />
 
+                        {err && <Typography variant='body2' component="p" style={{ color: "red" }}>{err}</Typography>}
                         {isSignup && <Input name='confirmPassword' label="Confirm password" handelChange={handelChange} type='password' />}
 
                       
@@ -135,7 +136,6 @@ const SignUp = () => {
                             {isSignup ? 'Sign Up' : 'Sign in'}
 
                         </Button>
-                        {/* {err && <h1 style={{ color: "red" }}>{err}</h1>} */}
 
                         <GoogleLogin
 

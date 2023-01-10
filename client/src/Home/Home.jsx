@@ -15,7 +15,7 @@ function useQuery() {
 }
 
 
-const Home = ({ OpenPopUp, SetPopUp }) => {
+const Home = ({ OpenPopUp, SetPopUp,setUpdatePopupText ,UpdatePopupText}) => {
     const dispatch = useDispatch();
 
     const [currentId, setCurrentId] = useState(null);
@@ -34,7 +34,6 @@ const Home = ({ OpenPopUp, SetPopUp }) => {
     const [tags, settags] = useState([]);
 
 
-    const [UpdatePopupText, setUpdatePopupText] = useState(false);
 
     const handleSelecetedTags = (items) => {
         settags(items)

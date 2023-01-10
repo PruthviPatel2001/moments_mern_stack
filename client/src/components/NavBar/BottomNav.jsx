@@ -1,17 +1,22 @@
-import React from 'react'
-import {  AppBar, Toolbar, Fab } from '@material-ui/core'
-import { useStyles } from '../../App';
+import { AppBar, Fab, Toolbar } from '@material-ui/core'
+
 import AddIcon from '@material-ui/icons/Add';
+import React from 'react'
+import { useStyles } from '../../App';
 
-
-const BottomNav = ({ SetPopUp}) => {
+const BottomNav = ({ SetPopUp, setUpdatePopupText}) => {
     const classes = useStyles();
+
+    const handleClick = () =>{
+        setUpdatePopupText(false)
+        SetPopUp(true)
+    }
 
     return (
         <AppBar position="fixed"  className={`${classes.appBar} bottom-bar`}>
         <Toolbar>
 
-            <Fab aria-label="add" onClick={()=> SetPopUp(true)} className={`${classes.fabButton} round-btn` }>
+            <Fab aria-label="add" onClick={handleClick} className={`${classes.fabButton} round-btn` }>
                 <AddIcon className='add-icon'/>
             </Fab>
             <div className={classes.grow} />

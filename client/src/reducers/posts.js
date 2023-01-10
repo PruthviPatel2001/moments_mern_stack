@@ -1,3 +1,5 @@
+ /* eslint-disable */
+
 import { actionTypes } from "../constants/actionTypes";
 
 export default (state = { isLoading:true , posts:[] }, action) => {
@@ -28,14 +30,11 @@ export default (state = { isLoading:true , posts:[] }, action) => {
       return { ...state ,  posts: action.payload.data  };
 
     case actionTypes.CREATE:
-
       return {...state, posts : [...state.posts, action.payload] }
 
     case actionTypes.UPDATE:
-
-
-
-      return {...state, posts: state.posts.map((post) => post._id === action.payload._id ? action.payload : post)}
+     
+    return {...state, posts: state.posts.map((post) => post._id === action.payload._id ? action.payload : post)}
 
     case actionTypes.DELETE:
 

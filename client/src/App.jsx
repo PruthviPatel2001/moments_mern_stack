@@ -1,36 +1,52 @@
-import React, { useState, useEffect } from 'react';
-
-// styling imports 
-import { Container, Button, AppBar, Toolbar, IconButton, Fab, Typography, Grid } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
 import "./scss/main.css"
 
-// components
-import DialogBox from './components/DialogBox/DialogBox';
-import Posts from './components/Posts/Posts';
-import Form from './components/Form/Form';
-import NavBar from './components/NavBar/NavBar';
+import { AppBar, Button, Container, Fab, Grid, IconButton, Toolbar, Typography } from '@material-ui/core'
+import React, { useEffect, useState } from 'react';
+import {
+    Redirect,
+    Route,
+    BrowserRouter as Router,
+    Switch,
+    useLocation
+} from "react-router-dom";
+
+import AddIcon from '@material-ui/icons/Add';
+import Auth from './components/Auth/Auth';
 import BottomNav from './components/NavBar/BottomNav';
+import DialogBox from './components/DialogBox/DialogBox';
+import Form from './components/Form/Form';
 import Home from './Home/Home';
+import NavBar from './components/NavBar/NavBar';
+import PostDetails from './components/PostDetails/PostDetails';
+import Posts from './components/Posts/Posts';
+import { getPosts } from './actions/posts'
+import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
+
+// styling imports 
+
+
+
+
+
+// components
+
+
+
+
+
+
 //--------
 
 // redux imports
-import { useDispatch } from 'react-redux';
-import { getPosts } from './actions/posts'
 
 
 
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    useLocation,
-    Redirect
 
-} from "react-router-dom";
-import Auth from './components/Auth/Auth';
-import PostDetails from './components/PostDetails/PostDetails';
+
+
+
+
 
 export const useStyles = makeStyles((theme) => ({
 
@@ -97,9 +113,9 @@ const App = () => {
 
                 <Route exact path='/posts'>
 
-                    <Home OpenPopUp={OpenPopUp} SetPopUp={SetPopUp} />
+                    <Home OpenPopUp={OpenPopUp} SetPopUp={SetPopUp} setUpdatePopupText={setUpdatePopupText} UpdatePopupText={UpdatePopupText}/>
 
-                    <BottomNav SetPopUp={SetPopUp} />
+                    <BottomNav SetPopUp={SetPopUp} setUpdatePopupText={setUpdatePopupText} />
 
                 </Route>
 
@@ -107,7 +123,7 @@ const App = () => {
 
                     <Home OpenPopUp={OpenPopUp} SetPopUp={SetPopUp} />
 
-                    <BottomNav SetPopUp={SetPopUp} />
+                    <BottomNav SetPopUp={SetPopUp}  setUpdatePopupText={setUpdatePopupText} />
 
                 </Route>
 
